@@ -66,7 +66,7 @@ streamlit run pages/1_Info_Geral.py
 
 ## 🧠 Sobre o Universo LSBC
 
-O cenário LSBC é um RPG de baixa fantasia inspirado nas obras de Julio Verne, Daniel Defoe e Robert Louis Stevenson, onde a razão, o conflito entre impérios e a ciência primitiva moldam um mundo alternativo nos tempos da exploração marítima. Mais detalhes estão disponíveis na [wiki do projeto](https://github.com/seu-usuario/lsbc/wiki).
+O cenário LSBC é um RPG de baixa fantasia inspirado nas obras de Julio Verne, Daniel Defoe e Robert Louis Stevenson, onde a razão, o conflito entre impérios e a ciência primitiva moldam um mundo alternativo nos tempos da exploração marítima. Mais detalhes estão disponíveis na futruramente no site.
 
 ---
 
