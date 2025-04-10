@@ -33,18 +33,36 @@ with st.sidebar:
     st.markdown("## 📁 Exportar")
 
     # Exportar personagem
-    # Remove qualquer objeto não serializável do personagem
     personagem_export = {
         k: v for k, v in personagem.items() if not isinstance(v, st.runtime.uploaded_file_manager.UploadedFile)
     }
-
     json_personagem = json.dumps(personagem_export, indent=2, ensure_ascii=False)
+
     st.download_button(
         label="📤 Exportar Personagem (.json)",
         data=json_personagem,
         file_name=f"{personagem.get('nome', 'personagem')}_{nivel_total}.json",
         mime="application/json"
     )
+
+    # Botão de impressão real com HTML
+    st.markdown("""
+        <style>
+        @media print {
+            .stSidebar {
+                display: none !important;
+            }
+            .main {
+                margin-left: 0 !important;
+            }
+        }
+        </style>
+
+        <div style="margin-top: 2rem;">
+            <h4>🖨️ Imprimir Ficha</h4>
+            <p>Para imprimir, clique no menu do Streamlit canto superior direito e selecione a opção <strong>Print</strong>.</p>
+        </div>
+    """, unsafe_allow_html=True)
 
 # ===== Funções Auxiliares =====
 def mostrar_valor(valor):
