@@ -3,7 +3,7 @@ from dados_sistema import DadosSistema
 from estilo import aplicar_estilo_lsbc
 
 # ====== Configuração Inicial ======
-st.set_page_config(page_title="Informações Gerais", layout="wide")
+st.set_page_config(page_title="→ Informações Gerais", layout="wide")
 aplicar_estilo_lsbc()
 ds = DadosSistema()
 
@@ -22,7 +22,7 @@ personagem["nome_jogador"] = st.text_input("Nome do Jogador", value=personagem.g
 personagem["nome"] = st.text_input("Nome do Personagem", value=personagem.get("nome", ""))
 
 # ====== Idade e Altura ======
-st.markdown("### 📏 Aparência Física")
+st.markdown("### Aparência Física")
 col1, col2 = st.columns(2)
 with col1:
     personagem["idade"] = st.number_input("Idade", min_value=0, max_value=120, step=1, value=personagem.get("idade", 18))

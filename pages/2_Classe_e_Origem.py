@@ -3,7 +3,6 @@ from estilo import aplicar_estilo_lsbc
 from dados_sistema import DadosSistema
 
 # ====== Configuração da Página ======
-st.set_page_config(page_title="Classe e Origem", layout="wide")
 aplicar_estilo_lsbc()
 ds = DadosSistema()
 st.markdown("# 🧭 Classe e Origem")

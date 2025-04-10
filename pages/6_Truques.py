@@ -3,7 +3,6 @@ from dados_sistema import DadosSistema
 from estilo import aplicar_estilo_lsbc
 
 # ====== Configuração da Página ======
-st.set_page_config(page_title="Truques e Misticismo", layout="wide")
 aplicar_estilo_lsbc()
 ds = DadosSistema()
 st.markdown("# 🧭 Truques e Misticismo")

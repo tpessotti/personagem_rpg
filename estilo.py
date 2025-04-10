@@ -55,6 +55,7 @@ def aplicar_estilo_lsbc():
                 font-family: 'Alegreya SC', serif;
                 font-size: 1.0rem;
                 font-weight: 700;
+                color: #183152;
             }
             
             .stMarkdown p, li, div {
@@ -118,3 +119,50 @@ def aplicar_estilo_lsbc():
         """,
         unsafe_allow_html=True
     )
+
+def navbar_resumo():
+    st.markdown("""
+    <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+    /* Remove a sidebar e cabeçalho */
+    header[data-testid="stHeader"] {
+        display: none;
+    }
+
+    /* Background com imagem de mapa */
+    .stApp {
+        background: 
+            linear-gradient(rgba(250, 245, 230, 0.75), rgba(250, 245, 230, 0.75)),
+            url('https://kartinki.pics/pics/uploads/posts/2022-08/1660264608_64-kartinkin-net-p-fon-staraya-karta-krasivo-72.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: relative;
+    }
+
+    /* Conteúdo centralizado */
+    .container {
+        font-family: 'Alegreya SC', serif;
+        text-align: center;
+        margin: 3rem auto;
+        line-height: 5rem;
+        border-radius: 10px;
+        width: 80%;
+        color: #2d2d2d;
+    }
+
+    /* Prólogo */
+    .prologo {
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 2rem auto;
+        width: 80%;
+        padding-top: 50px;
+        padding-bottom: 50px;
+        font-size: 1.2rem;
+        line-height: 1.8rem;
+        text-align: justify;
+    }
+    </style>
+
+    """, unsafe_allow_html=True)

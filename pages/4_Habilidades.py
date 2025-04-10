@@ -2,7 +2,6 @@ import streamlit as st
 from estilo import aplicar_estilo_lsbc
 from dados_sistema import DadosSistema
 
-st.set_page_config(page_title="Habilidades", layout="wide")
 aplicar_estilo_lsbc()
 st.markdown("# 🧭 Escolha de Proficiências")
 dados = DadosSistema()

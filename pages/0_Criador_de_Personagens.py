@@ -3,7 +3,6 @@ from estilo import aplicar_estilo_lsbc
 import json
 from dados_sistema import DadosSistema
 
-st.set_page_config(page_title="Criador de Personagem LSBC", layout="wide")
 aplicar_estilo_lsbc()
 ds = DadosSistema()
 
@@ -19,8 +18,8 @@ if "classes" not in st.session_state.personagem:
 
 ds.inicializar_personagem()
 
-st.text("""
-Este criador foi feito para te ajudar a desenvolver personagens de forma modular e imersiva dentro do universo **LSBC**.
+st.markdown("""
+Este criador foi feito para te ajudar a desenvolver personagens de forma modular e imersiva dentro do universo LSBC.
 
 🧾 Ao longo do processo, você poderá definir:
 - Informações básicas do seu personagem
@@ -30,6 +29,9 @@ Este criador foi feito para te ajudar a desenvolver personagens de forma modular
 - E no final, exportar uma ficha pronta para jogar
 
 Use o menu lateral esquerdo (ou superior em mobile) para navegar pelas etapas.
+
+#### ⚠️ PARA CONFIRMAR AS AÇÕES, CLIQUE DUAS VEZES NO BOTÃO! ⚠️
+
 """)
 
 with st.sidebar:

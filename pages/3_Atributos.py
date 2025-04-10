@@ -3,7 +3,6 @@ from estilo import aplicar_estilo_lsbc
 from dados_sistema import DadosSistema
 
 # Configuração de página e estilo
-st.set_page_config(page_title="Atributos", layout="wide")
 aplicar_estilo_lsbc()
 st.markdown("# 🧭 Atributos")
 dados = DadosSistema()

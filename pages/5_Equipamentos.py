@@ -3,7 +3,6 @@ from estilo import aplicar_estilo_lsbc
 from dados_sistema import DadosSistema
 
 # ===== Inicialização =====
-st.set_page_config(page_title="Equipamento Inicial", layout="wide")
 aplicar_estilo_lsbc()
 ds = DadosSistema()
 st.markdown("# 🧭 Equipamentos Iniciais")

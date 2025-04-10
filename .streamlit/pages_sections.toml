@@ -1,0 +1,45 @@
+[[pages]]
+path = "Homepage.py"
+name = "LSBC"
+icon = "🧭"
+
+[[pages]]
+path = "pages/0_Criador_de_Personagens.py"
+name = "Criador de Personagens"
+icon = "🧬"
+is_section = true
+
+[[pages]]
+path = "pages/1_Informacoes_Gerais.py"
+name = "→ Informações Gerais"
+icon = "🧾"
+
+[[pages]]
+path = "pages/2_Classe_e_Origem.py"
+name = "→ Classe e Origem"
+icon = "🧭"
+
+[[pages]]
+path = "pages/3_Atributos.py"
+name = "→ Atributos"
+icon = "📊"
+
+[[pages]]
+path = "pages/4_Habilidades.py"
+name = "→ Habilidades"
+icon = "🎯"
+
+[[pages]]
+path = "pages/5_Equipamentos.py"
+name = "→ Equipamentos"
+icon = "🧰"
+
+[[pages]]
+path = "pages/6_Truques.py"
+name = "→ Truques"
+icon = "✨"
+
+[[pages]]
+path = "pages/7_Resumo.py"
+name = "→ Resumo"
+icon = "📜"
