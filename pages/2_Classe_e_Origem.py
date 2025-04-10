@@ -33,24 +33,30 @@ def gerar_legenda_personagem():
 
     return f"""
     <p style='margin-top: -0.5rem; margin-bottom: 1rem; color: #444; font-size: 0.95rem;'>
-        🎖️ <strong>{nome}</strong> – Nível Total: {nivel_total}<br>
-        🧩 <em>{distrib_texto}</em>
+        🎖️ <strong>{nome}</strong> | Nível Total: {nivel_total}<br>
+        🏴‍☠️ <em>{distrib_texto}</em>
     </p>
     """
 
 
 # ====== Adição de Nível ======
 
-st.markdown(gerar_legenda_personagem(), unsafe_allow_html=True)
-
 col1, col2 = st.columns([8, 2])
 with col1:
     classe_selecionada = st.selectbox("Selecione a classe:", ds.classes_disponiveis)
+    descricao_nivel_1 = ds.descricao_classes.get(classe_selecionada, {}).get(1)
+    if descricao_nivel_1:
+        st.markdown(f"<div style='margin-top:0.5rem; margin-bottom:1.5rem; font-size:0.95rem; color:#555;'>{descricao_nivel_1}</div>", unsafe_allow_html=True)
+    else:
+        st.info("Essa classe ainda não possui descrição definida para o nível 1.")
+
 
 with col2:
-    if st.button("➕ Adicionar Nível"):
+    st.markdown(f"<div style='margin-top:0.5rem; margin-bottom:1.7rem; font-size:1.0rem;'> </div>", unsafe_allow_html=True)
+    if st.button("\+ Adicionar Nível", use_container_width=True):
         niveis_totais = contar_niveis_totais()
         classes_usadas = {c["classe"] for c in personagem["classes"]}
+        st.markdown(gerar_legenda_personagem(), unsafe_allow_html=True)
 
         if niveis_totais >= 10:
             st.warning("O personagem já possui o nível máximo (10).")
@@ -84,9 +90,14 @@ for i, entrada in enumerate(personagem["classes"]):
     nivel = entrada["nivel"]
     especializacao = entrada.get("especializacao")
 
-    # Descrição
-    if especializacao and nivel in [3, 5, 7, 10]:
-        descricao = ds.descricao_especializacoes.get(classe, {}).get(especializacao, {}).get(nivel)
+    # Descrição (com base em especialização, se houver)
+    nivel_especializacao = next(
+        (c["especializacao"] for c in personagem["classes"] if c["classe"] == classe and c.get("especializacao")),
+        None
+    )
+
+    if nivel in [3, 5, 7, 10] and nivel_especializacao:
+        descricao = ds.descricao_especializacoes.get(classe, {}).get(nivel_especializacao, {}).get(nivel)
     else:
         descricao = ds.descricao_classes.get(classe, {}).get(nivel)
 
@@ -110,7 +121,7 @@ for i, entrada in enumerate(personagem["classes"]):
 
         st.markdown(
             f"""
-            <div style='background-color:#f9f9f9; padding: 1.25rem; border-left: 4px solid #999; border-radius: 0.5rem; margin-bottom: 1rem;'>
+            <div style='background-color:#E9E4DC; padding: 1.25rem; border-left: 4px solid #999; border-radius: 0.5rem; margin-bottom: 1rem;'>
                 <h4 style='margin-top:0;'>{classe} – Nível {nivel}</h4>
                 {indicadores_html}
                 {descricao}

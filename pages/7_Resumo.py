@@ -38,7 +38,7 @@ with st.sidebar:
     json_personagem = json.dumps(personagem_export, indent=2, ensure_ascii=False)
 
     st.download_button(
-        label="📤 Exportar Personagem (.json)",
+        label="Exportar Personagem (.json)",
         data=json_personagem,
         file_name=f"{personagem.get('nome', 'personagem')}_{nivel_total}.json",
         mime="application/json"

@@ -74,16 +74,16 @@ st.session_state.armadura = armadura
 
 # ===== Confirmação =====
 if not st.session_state.equipamentos_confirmados:
-    if st.button("✅ Confirmar Equipamentos"):
+    if st.button("✓ Confirmar Equipamentos"):
         st.session_state.equipamentos_confirmados = True
         personagem["equipamentos_confirmados"] = True
         st.success("Equipamentos iniciais confirmados! Eles não poderão mais ser alterados.")
 else:
-    st.info("✅ Equipamentos já foram confirmados e estão bloqueados.")
+    st.info("✓ Equipamentos já foram confirmados e estão bloqueados.")
 
 # ===== Botão de Reset =====
 if st.session_state.equipamentos_confirmados:
-    if st.button("🔄 Resetar Equipamentos"):
+    if st.button("↺ Resetar Equipamentos"):
         st.session_state.equipamentos_confirmados = False
         personagem["equipamentos_confirmados"] = False
 
@@ -124,7 +124,7 @@ for item in equipamentos["extras"]:
     st.markdown(f"- {item}")
 
 # ===== Adicionar Equipamento Extra =====
-st.markdown("### ➕ Adicionar Equipamento Extra")
+st.markdown("### \+ Adicionar Equipamento Extra")
 
 with st.expander("Criar novo equipamento"):
     tipo = st.selectbox("Tipo de Equipamento", ["Item", "Arma", "Armadura"], key="tipo_equip")
@@ -137,7 +137,7 @@ with st.expander("Criar novo equipamento"):
         atributo = st.selectbox("Atributo Usado", ["Força", "Destreza", "Força/Destreza", "—"])
 
         if st.button("Adicionar Arma"):
-            descricao = f"🗡️ {nome} — {dano} | Alcance: {alcance} | {propriedades} | Atributo: {atributo}"
+            descricao = f"{nome} | {dano} | Alcance: {alcance} | {propriedades} | Atributo: {atributo}"
             equipamentos["extras"].append(descricao)
             st.success("Arma adicionada com sucesso!")
             st.rerun()
@@ -149,7 +149,7 @@ with st.expander("Criar novo equipamento"):
         propriedades = st.text_input("Propriedades", placeholder="Ex: Discreta, Simbólica")
 
         if st.button("Adicionar Armadura"):
-            descricao = f"🛡️ {nome} — CA: {ca} | Tipo: {tipo_arma} | Penalidade: {penalidade} | {propriedades}"
+            descricao = f"{nome} | CA: {ca} | Tipo: {tipo_arma} | Penalidade: {penalidade} | {propriedades}"
             equipamentos["extras"].append(descricao)
             st.success("Armadura adicionada com sucesso!")
             st.rerun()
@@ -157,7 +157,7 @@ with st.expander("Criar novo equipamento"):
     else:  # Item genérico
         descricao = st.text_area("Descrição do Item")
         if st.button("Adicionar Item"):
-            item_formatado = f"📦 {nome}: {descricao}" if descricao else f"📦 {nome}"
+            item_formatado = f"{nome}: {descricao}" if descricao else f"📦 {nome}"
             equipamentos["extras"].append(item_formatado)
             st.success("Item adicionado com sucesso!")
             st.rerun()

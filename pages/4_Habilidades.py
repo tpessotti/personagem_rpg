@@ -21,7 +21,7 @@ if "atributos_finais" not in st.session_state.personagem:
     }
 
 # ===== Resetar Proeficiências =====
-if st.button("🔄 Resetar Proeficiências"):
+if st.button("↺ Resetar Proeficiências"):
     for k in st.session_state.personagem["habilidades"]:
         st.session_state.personagem["habilidades"][k] = 0
     st.rerun()

@@ -5,7 +5,7 @@ def aplicar_estilo_lsbc():
         """
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@400;700&display=swap');
-
+            
             html, body, [class*="css"] {
                 font-family: 'Alegreya SC', serif;
                 background-color: #f8f5f0;
@@ -51,7 +51,14 @@ def aplicar_estilo_lsbc():
                 font-weight: 700;
             }
             
-            .stMarkdown strong, p, span, .stMarkdown h4, .stHeading h4  {
+            .stMarkdown h4, .stHeading h4{
+                font-family: 'Alegreya SC', serif;
+                color: #183152;
+                font-size: 1.2rem;
+                font-weight: 700;
+            }
+            
+            .stMarkdown strong, p, span  {
                 font-family: 'Alegreya SC', serif;
                 font-size: 1.0rem;
                 font-weight: 700;
@@ -80,16 +87,28 @@ def aplicar_estilo_lsbc():
             
             .stButton>button {
                 background-color: #325a7a;
-                color: #ffffff;
+                color: #f8f5f0;
                 font-family: 'Alegreya SC', serif;
                 border: none;
-                border-radius: 6px;
-                padding: 0.5em 1.2em;
+                padding: 0.0em 0.4em;
+            }
+            
+            .stButton>button p {
+                color: white;
+                font-family: 'Alegreya SC', serif;
+                border: none;
+                padding: 0.0em 0.4em;
             }
 
             .stButton>button:hover {
                 font-family: 'Alegreya SC', serif;
                 background-color: #3f6f92;
+                color: #f8f5f0;
+            }
+            
+            .stButton>button:hover p {
+                font-family: 'Alegreya SC', serif;
+                color: #f8f5f0;
             }
 
             .st-bb {

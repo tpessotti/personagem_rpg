@@ -46,15 +46,15 @@ for attr in atributos_base:
     bonus_total = bonus_manual + bonus_classe.get(attr, 0)
     valor_final = base + bonus_total
 
-    col1, col2, col3, col4, col5 = st.columns([1.5, 1, 1, 1, 1.5])
+    col1, col2, col3, col4, col5 = st.columns([1, 0.1, 0.2, 0.1, 1])
     with col1:
-        st.markdown(f"**{attr}**")
+        st.markdown(f"<div style='text-align: left;'><strong>{attr}</strong></div>", unsafe_allow_html=True)
 
     with col2:
-        if st.button("🔽", key=f"menos_{attr}") and base > VALOR_MINIMO:
+        if st.button("▼", key=f"menos_{attr}", use_container_width=True) and base > VALOR_MINIMO:
             personagem["atributos_finais"][attr]["base"] -= 1
             st.rerun()
-
+        
     with col3:
         st.markdown(
             f"<div style='text-align:center; font-size:24px;'><strong>{valor_final}</strong></div>",
@@ -62,7 +62,7 @@ for attr in atributos_base:
         )
 
     with col4:
-        if st.button("🔼", key=f"mais_{attr}") and base < VALOR_MAXIMO and pontos_restantes > 0:
+        if st.button("▲", key=f"mais_{attr}", use_container_width=True) and base < VALOR_MAXIMO and pontos_restantes > 0:
             personagem["atributos_finais"][attr]["base"] += 1
             st.rerun()
 

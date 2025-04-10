@@ -64,7 +64,7 @@ with col_esq:
             texto = f"N{i}: {icone * usados}{'⚪' * (total - usados)}"
             st.markdown(texto)
 
-    if st.button("🔁 Resetar Arsenal"):
+    if st.button("↺ Resetar Arsenal"):
         misticismo["arsenal"] = []
         misticismo["slots_usados"] = [0] * 6
         st.rerun()
@@ -117,7 +117,7 @@ else:
             elif misticismo["slots_usados"][t["nivel"]] >= slots_disponiveis[t["nivel"]]:
                 st.error("❌ Sem slots disponíveis para este nível")
             else:
-                if st.button(f"➕ Adicionar {t['nome']}", key=t["nome"]):
+                if st.button(f"\+ Adicionar {t['nome']}", key=t["nome"]):
                     misticismo["arsenal"].append(t)
                     misticismo["slots_usados"][t["nivel"]] += 1
                     st.rerun()
