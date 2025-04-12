@@ -225,7 +225,7 @@ extras = equipamentos.get("extras", [])
 equipados = [equipamentos.get("arma_cc"), equipamentos.get("arma_dist"), equipamentos.get("armadura")]
 
 for item in extras:
-    col1, col2 = st.columns([5, 1])
+    col1, col2, col3 = st.columns([5, 1, 1])
     with col1:
         if item in tabela_armas and item not in equipados:
             dano, distancia, propriedades, atributo = tabela_armas[item]
@@ -235,18 +235,67 @@ for item in extras:
             st.markdown(f"- {item} 🛡️ → CA {ca} | {tipo_arm} | Penalidade: {penalidade} | {propriedades}")
         elif item not in equipados:
             st.markdown(f"- {item}")
+
     with col2:
+        if (
+            item in personagem.get("armas_personalizadas", {}) or 
+            item in personagem.get("armaduras_personalizadas", {})
+        ):
+            if st.button("✏️", key=f"edit_{item}"):
+                st.session_state["item_para_editar"] = item
+                st.rerun()
+
+    with col3:
         if st.button("🗑️", key=f"del_{item}"):
             equipamentos["extras"].remove(item)
-
-            # Remove das personalizadas, se existir
-            if item in personagem.get("armas_personalizadas", {}):
-                del personagem["armas_personalizadas"][item]
-            if item in personagem.get("armaduras_personalizadas", {}):
-                del personagem["armaduras_personalizadas"][item]
-
+            personagem.get("armas_personalizadas", {}).pop(item, None)
+            personagem.get("armaduras_personalizadas", {}).pop(item, None)
             st.success(f"{item} removido do inventário.")
             st.rerun()
+
+if "item_para_editar" in st.session_state:
+    item = st.session_state["item_para_editar"]
+
+    if item in personagem.get("armas_personalizadas", {}):
+        dano, alcance, propriedades, atributo = personagem["armas_personalizadas"][item]
+        st.markdown(f"### ✏️ Editar Arma: *{item}*")
+
+        with st.form("form_editar_arma"):
+            novo_dano = st.text_input("Dano", value=dano)
+            novo_alcance = st.text_input("Alcance", value=alcance)
+            novas_props = st.text_input("Propriedades", value=propriedades)
+            novo_atributo = st.selectbox("Atributo", ["Força", "Destreza", "Força/Destreza", "—"], index=0 if atributo not in ["Destreza", "Força/Destreza"] else ["Força", "Destreza", "Força/Destreza", "—"].index(atributo))
+
+            enviar = st.form_submit_button("Salvar Alterações")
+            if enviar:
+                personagem["armas_personalizadas"][item] = (novo_dano, novo_alcance, novas_props, novo_atributo)
+                st.success(f"{item} atualizado!")
+                del st.session_state["item_para_editar"]
+                st.rerun()
+            if st.form_submit_button("Cancelar"):
+                del st.session_state["item_para_editar"]
+                st.rerun()
+
+    elif item in personagem.get("armaduras_personalizadas", {}):
+        ca, tipo_arm, penalidade, propriedades = personagem["armaduras_personalizadas"][item]
+        st.markdown(f"### ✏️ Editar Armadura: *{item}*")
+
+        with st.form("form_editar_armadura"):
+            nova_ca = st.text_input("CA", value=ca)
+            novo_tipo = st.text_input("Tipo", value=tipo_arm)
+            nova_penalidade = st.text_input("Penalidade", value=penalidade)
+            novas_props = st.text_input("Propriedades", value=propriedades)
+
+            enviar = st.form_submit_button("Salvar Alterações")
+            if enviar:
+                personagem["armaduras_personalizadas"][item] = (nova_ca, novo_tipo, nova_penalidade, novas_props)
+                st.success(f"{item} atualizado!")
+                del st.session_state["item_para_editar"]
+                st.rerun()
+            if st.form_submit_button("Cancelar"):
+                del st.session_state["item_para_editar"]
+                st.rerun()
+
 
 
 # Atualiza os status
