@@ -74,10 +74,10 @@ def mostrar_equipamento(nome, tabela):
         return f"❔ {nome}"
     if tabela is tabela_armas:
         dano, alcance, propriedades, atributo = stats
-        return f"**{nome}** — Dano: {dano} | Alcance: {alcance} | {propriedades} | Atributo: {atributo}"
+        return f"**{nome}** | Dano: {dano} | Alcance: {alcance} | {propriedades} | Atributo: {atributo}"
     else:
         ca, tipo, penalidade, props = stats
-        return f"**{nome}** — CA: {ca} | Tipo: {tipo} | Penalidade: {penalidade} | {props}"
+        return f"**{nome}** | CA: {ca} | Tipo: {tipo} | Penalidade: {penalidade} | {props}"
 
 # ===== Cabeçalho =====
 st.title(f"{personagem.get("nome", "🚫 Nome não informado")} | {nivel_total}")

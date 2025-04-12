@@ -9,7 +9,13 @@ st.markdown("# 🧭 Truques e Misticismo")
 
 # ---------------------- INICIALIZAÇÃO ----------------------
 ds = DadosSistema()
-truques_disponiveis = ds.truques_disponiveis
+
+tipos_liberados = ds.tipos_truques_disponiveis(st.session_state.personagem)
+truques_disponiveis = [t for t in ds.truques_disponiveis if t["Tipo"] in tipos_liberados]
+
+if not truques_disponiveis:
+    st.warning("Nenhum truque disponível para o seu personagem.")
+    st.stop()
 
 # Garantir estrutura do personagem
 if "personagem" not in st.session_state:
@@ -26,7 +32,7 @@ misticismo = st.session_state.personagem["misticismo"]
 
 # Verificar nível total
 classes = st.session_state.personagem.get("classes", [])
-nivel_atual = sum(c.get("nivel", 0) for c in classes)
+nivel_atual = len(classes) if classes else 0
 
 # Se o nível mudou, resetar arsenal e slots
 if misticismo.get("nivel_total", -1) != nivel_atual:
@@ -76,7 +82,7 @@ with col_dir:
         st.info("Nenhum truque selecionado ainda.")
     else:
         for truque in misticismo["arsenal"]:
-            st.markdown(f"- Nível {truque['nivel']} | {truque['tipo']} | **{truque['nome']}**")
+            st.markdown(f"- Nível {truque['Nível']} | {truque['Tipo']} | **{truque['Nome']}**")
 
 # ---------------------- FILTROS ----------------------
 
@@ -84,40 +90,43 @@ st.markdown("---")
 st.subheader("Buscar Truques")
 
 filtro_nome = st.text_input("Filtrar por nome:")
-filtro_tipo = st.selectbox("Filtrar por tipo", ["Todos"] + sorted(set(t["tipo"] for t in truques_disponiveis)))
+filtro_tipo = st.selectbox("Filtrar por tipo", ["Todos"] + sorted(set(t["Tipo"] for t in truques_disponiveis)))
 filtro_nivel = st.selectbox("Filtrar por nível", ["Todos"] + list(range(6)))
 
 # Aplicar filtros
 truques_filtrados = []
 for truque in truques_disponiveis:
-    if filtro_nome and filtro_nome.lower() not in truque["nome"].lower():
+    if filtro_nome and filtro_nome.lower() not in truque["Nome"].lower():
         continue
-    if filtro_tipo != "Todos" and truque["tipo"] != filtro_tipo:
+    if filtro_tipo != "Todos" and truque["Tipo"] != filtro_tipo:
         continue
-    if filtro_nivel != "Todos" and truque["nivel"] != filtro_nivel:
+    if filtro_nivel != "Todos" and truque["Nível"] != filtro_nivel:
         continue
     truques_filtrados.append(truque)
 
 # ---------------------- TABELA DE TRUQUES ----------------------
 
 st.markdown("---")
-st.subheader("Todos os Truques")
+st.subheader("Truques disponíveis")
 
 if not truques_filtrados:
-    st.warning("Nenhum truque encontrado com esses filtros.")
+    st.warning("Nenhum truque encontrado.")
 else:
     for t in truques_filtrados:
         with st.container():
-            st.markdown(f"**{t['nome']}** (Nível {t['nivel']}) - *{t['tipo']}*")
-            st.caption(f"🎯 *{t['efeito']}*")
-            st.caption(f"📜 Requisitos: {t['requisitos']}")
+            st.markdown(f"**{t['Nome']}** (Nível {t['Nível']}) - *{t['Tipo']}*")
+            st.caption(f"🎯 *{t['Descrição']}*")
+            st.caption(f"📜 Requisitos: {t['Requisitos']}")
 
             if t in misticismo["arsenal"]:
                 st.success("✅ Já adicionado")
-            elif misticismo["slots_usados"][t["nivel"]] >= slots_disponiveis[t["nivel"]]:
+            nivel = int(t["Nível"])
+            if t in misticismo["arsenal"]:
+                st.success("✅ Já adicionado")
+            elif misticismo["slots_usados"][nivel] >= slots_disponiveis[nivel]:
                 st.error("❌ Sem slots disponíveis para este nível")
             else:
-                if st.button(f"\+ Adicionar {t['nome']}", key=t["nome"]):
+                if st.button(f"\+ Adicionar {t['Nome']}", key=t["Nome"]):
                     misticismo["arsenal"].append(t)
-                    misticismo["slots_usados"][t["nivel"]] += 1
+                    misticismo["slots_usados"][nivel] += 1
                     st.rerun()

@@ -30,18 +30,20 @@ def gerar_legenda_personagem():
 
     partes = [f"{cls} {lvl}" for cls, lvl in distribuicao.items()]
     distrib_texto = " / ".join(partes)
-
+    
     return f"""
     <p style='margin-top: -0.5rem; margin-bottom: 1rem; color: #444; font-size: 0.95rem;'>
         🎖️ <strong>{nome}</strong> | Nível Total: {nivel_total}<br>
         🏴‍☠️ <em>{distrib_texto}</em>
     </p>
     """
+    
 
 
 # ====== Adição de Nível ======
 
 col1, col2 = st.columns([8, 2])
+st.markdown(gerar_legenda_personagem(), unsafe_allow_html=True)
 with col1:
     classe_selecionada = st.selectbox("Selecione a classe:", ds.classes_disponiveis)
     descricao_nivel_1 = ds.descricao_classes.get(classe_selecionada, {}).get(1)
@@ -50,13 +52,11 @@ with col1:
     else:
         st.info("Essa classe ainda não possui descrição definida para o nível 1.")
 
-
 with col2:
     st.markdown(f"<div style='margin-top:0.5rem; margin-bottom:1.7rem; font-size:1.0rem;'> </div>", unsafe_allow_html=True)
     if st.button("\+ Adicionar Nível", use_container_width=True):
         niveis_totais = contar_niveis_totais()
         classes_usadas = {c["classe"] for c in personagem["classes"]}
-        st.markdown(gerar_legenda_personagem(), unsafe_allow_html=True)
 
         if niveis_totais >= 10:
             st.warning("O personagem já possui o nível máximo (10).")
@@ -81,6 +81,7 @@ with col2:
             })
 
             st.success(f"Nível {nivel_na_classe} de {classe_selecionada} adicionado.")
+            st.rerun()
 
 # ====== Exibição de Níveis ======
 st.subheader("Progressão de Níveis")
@@ -147,6 +148,7 @@ for i, entrada in enumerate(personagem["classes"]):
         if st.button("✅ Confirmar Especialização", key=f"conf_espec_{i}"):
             entrada["especializacao"] = especializacao
             st.success(f"Especialização '{especializacao}' aplicada.")
+            st.rerun()
 
     # Escolha de Atributo
     if entrada.get("bonus") == "atributo" and not entrada.get("atributo_escolhido"):
@@ -159,6 +161,7 @@ for i, entrada in enumerate(personagem["classes"]):
         if st.button("✅ Confirmar Atributo", key=f"conf_attr_{i}"):
             entrada["atributo_escolhido"] = atributo
             st.success(f"Atributo '{atributo}' aumentado.")
+            st.rerun()
 
     # Escolha de Proeza
     if entrada.get("bonus") == "proeza" and not entrada.get("proeza_escolhida"):
@@ -174,3 +177,4 @@ for i, entrada in enumerate(personagem["classes"]):
         if st.button("✅ Confirmar Proeza", key=f"conf_proeza_{i}"):
             entrada["proeza_escolhida"] = proeza
             st.success(f"Proeza '{proeza}' aplicada.")
+            st.rerun()

@@ -357,40 +357,40 @@ class DadosSistema:
         # ====== Dados dos Equipamentos Iniciais ======
         self.equipamento_inicial = {
             "Marujo": {
-                "Armas Corpo-a-Corpo": ["Sabre", "2 Machados de Mão"],
-                "Armas à Distância": ["Besta Leve", "Arco Curto"],
+                "Arma Primária": ["Sabre", "Machado de Mão"],
+                "Arma Secundária": ["Besta Leve", "Arco Curto"],
                 "Extras": ["Corda e Gancho", "Kit de Ferramentas Navais"]
             },
             "Duelista": {
-                "Armas Corpo-a-Corpo": ["Espada Curta", "Sabre"],
-                "Armas à Distância": ["Pistola", "Faca de Arremesso (8)", "Mosquete"],
+                "Arma Primária": ["Espada Curta", "Sabre"],
+                "Arma Secundária": ["Pistola", "Faca de Arremesso (8)", "Mosquete"],
                 "Extras": ["Kit de Manutenção de Armas"]
             },
             "Explorador": {
-                "Armas Corpo-a-Corpo": ["Arco Curto", "Lança"],
-                "Armas à Distância": ["Pistola", "Faca de Arremesso (8)"],
+                "Arma Primária": ["Arco Curto", "Lança"],
+                "Arma Secundária": ["Pistola", "Faca de Arremesso (8)"],
                 "Extras": ["Kit de Sobrevivência", "Mapa Regional"]
             },
             "Charlatão": {
-                "Armas Corpo-a-Corpo": ["Punhal", "Espada Curta"],
-                "Armas à Distância": ["Pistola"],
+                "Arma Primária": ["Punhal", "Espada Curta"],
+                "Arma Secundária": ["Pistola"],
                 "Extras": ["Kit de Disfarces", "Kit de Ferramentas de Ladrão"]
             },
             "Médico": {
-                "Armas Corpo-a-Corpo": ["Clava", "Faca de Arremesso"],
+                "Arma Primária": ["Clava", "Faca de Arremesso"],
                 "Extras": ["Kit de Medicina", "Bandagens", "Poção de Cura Simples (2)"]
             },
             "Sacerdote": {
-                "Armas Corpo-a-Corpo": ["Espada Curta", "Bastão"],
+                "Arma Primária": ["Espada Curta", "Bastão"],
                 "Extras": ["Kit de Escritura", "Roupas Clericais", "Amuleto Religioso"]
             },
             "Sabotador": {
-                "Armas Corpo-a-Corpo": ["Punhal", "Lança"],
-                "Armas à Distância": ["Besta Leve", "Granada (6)"],
+                "Arma Primária": ["Punhal", "Lança"],
+                "Arma Secundária": ["Besta Leve", "Granada (6)"],
                 "Extras": ["Kit de Ferramentas de Sabotagem", "Kit de Explosivos Básico"]
             },
             "Erudito": {
-                "Armas Corpo-a-Corpo": ["Bastão", "Faca de Arremesso (8)"],
+                "Arma Primária": ["Bastão", "Faca de Arremesso (8)"],
                 "Extras": ["Kit de Engenharia", "Kit de Alquimia", "Caderno de Anotações", "Óculos de Precisão"]
             },
         }
@@ -457,705 +457,718 @@ class DadosSistema:
         
         # ====== Truques ======
         self.truques_disponiveis = [
-            #Nível 0 – Hipnose e Manipulação
-            {
-                "nivel": 0,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Palavras Enfáticas",
-                "efeito": "Você escolhe um alvo a até 6 metros e faz um Teste de Persuasão (DC 12). Se bem-sucedido, ele presta atenção total em você por 30 segundos, ignorando distrações leves.",
-                "requisitos": "O alvo precisa entender sua língua."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Comando Simples",
-                "efeito": "Você diz uma única palavra de comando (ex: 'Pare!', 'Corra!', 'Ajoelhe-se!'). O alvo deve fazer um Teste de Sabedoria (DC 12) ou seguirá o comando por 1 turno.",
-                "requisitos": "O comando deve ser algo que possa ser cumprido imediatamente."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Olhos Penetrantes",
-                "efeito": "Você pode fazer um Teste de Intuição (DC 12) para detectar o estado emocional do alvo (nervoso, mentindo, assustado, calmo, etc.).",
-                "requisitos": "Precisa manter contato visual por pelo menos 5 segundos."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Controle de Voz",
-                "efeito": "Você pode alterar levemente sua voz (mais grave, mais aguda, rouca ou firme) por 5 minutos, tornando-a mais intimidadora ou persuasiva.",
-                "requisitos": "O efeito é apenas auditivo e não engana quem já conhece bem sua voz."
-            },
-            #Nível 0 – Alquimia e Ciência
-            {
-                "nivel": 0,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Queima Controlada",
-                "efeito": "Você pode acender ou apagar pequenas chamas (velas, lamparinas, fósforos) em um raio de 3 metros.",
-                "requisitos": "Precisa de uma fonte de fogo próxima."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Teste de Veneno",
-                "efeito": "Você pode identificar a presença de venenos ou drogas em um líquido com um Teste de Medicina (DC 12).",
-                "requisitos": "Precisa observar ou cheirar o líquido por pelo menos 10 segundos."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Reação Química",
-                "efeito": "Você pode misturar pequenas substâncias para produzir um estalo alto, fumaça leve ou um brilho breve.",
-                "requisitos": "Precisa ter acesso a materiais químicos básicos."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Corte e Esterilização",
-                "efeito": "Você pode limpar e desinfetar uma ferida pequena, prevenindo infecções. Se usado antes de um descanso, permite recuperar +1 PV.",
-                "requisitos": "Precisa de álcool ou outra substância desinfetante."
-            },
-            #Nível 0 – Ilusões e Truques
-            {
-                "nivel": 0,
-                "tipo": "Ilusões e Truques",
-                "nome": "Reflexo Enganoso",
-                "efeito": "Você pode fazer com que uma luz seja refletida de forma a distrair ou cegar um alvo por 1 turno. O alvo deve fazer um Teste de Constituição (DC 12) ou sofrer desvantagem na próxima ação.",
-                "requisitos": "Precisa de um objeto metálico ou de vidro."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Ilusões e Truques",
-                "nome": "Passos Falsos",
-                "efeito": "Você pode fazer um ruído semelhante ao som de passos vindo de um ponto a até 10 metros.",
-                "requisitos": "O local precisa ter materiais como madeira ou pedra para ecoar o som."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Ilusões e Truques",
-                "nome": "Som Fantasma",
-                "efeito": "Você pode imitar a voz de uma pessoa que já ouviu antes, mas apenas por frases curtas. Alvos desatentos devem fazer um Teste de Percepção (DC 12) para perceber a farsa.",
-                "requisitos": "O som não pode ter tons muito complexos, como gritos ou cantos."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Ilusões e Truques",
-                "nome": "Tinta Invisível",
-                "efeito": "Você pode escrever algo que só se tornará visível sob uma condição específica (exemplo: calor, água, luz forte).",
-                "requisitos": "Precisa ter uma tinta especial ou um reagente químico."
-            },
-            #Nível 0 – Rituais e Misticismo
-            {
-                "nivel": 0,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Sussurros Espirituais",
-                "efeito": "Você pode murmurar palavras indecifráveis que parecem vir de diferentes direções em um raio de 3 metros, assustando ouvintes desatentos.",
-                "requisitos": "Funciona melhor em locais silenciosos ou escuros."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Símbolo de Proteção",
-                "efeito": "Você pode desenhar um símbolo místico em um objeto ou parede. Pessoas supersticiosas precisarão fazer um Teste de Sabedoria (DC 12) para ignorá-lo.",
-                "requisitos": "Precisa de um material para desenhar, como carvão ou giz."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Brisa Cerimonial",
-                "efeito": "Você pode criar uma corrente de ar súbita que movimenta tecidos, velas ou faz a poeira subir levemente.",
-                "requisitos": "Precisa estar ao ar livre ou próximo de uma entrada aberta."
-            },
-            {
-                "nivel": 0,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Aura de Devoção",
-                "efeito": "Pessoas ao seu redor sentem uma leve confiança ou temor em relação a você, dependendo de sua intenção.",
-                "requisitos": "Precisa de um símbolo religioso visível."
-            },
-            #Nível 1 – Hipnose e Manipulação
-            {
-                "nivel": 1,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Sugestão Sutil",
-                "efeito": "Você implanta uma ideia na mente de um alvo dentro de 9 metros. Ele deve fazer um Teste de Sabedoria (DC 12). Se falhar, acreditará na ideia como se fosse sua, desde que seja algo lógico.",
-                "requisitos": "O alvo precisa entender sua língua e não pode estar hostil no momento."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Comando Rápido",
-                "efeito": "Você dá uma ordem curta e firme para um alvo a 6 metros. O alvo deve fazer um Teste de Sabedoria (DC 12) ou seguirá o comando por 1 turno (ex: 'Solte!', 'Corra!', 'Pare!').",
-                "requisitos": "O comando deve ser algo que o alvo possa cumprir imediatamente."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Falsa Lembrança",
-                "efeito": "Você planta uma lembrança vaga e confusa na mente do alvo. Ele deve fazer um Teste de Inteligência (DC 12) ou acreditará que o evento aconteceu, mas sem detalhes claros.",
-                "requisitos": "O alvo precisa estar distraído ou receptivo à conversa."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Ameaça Silenciosa",
-                "efeito": "Você foca seu olhar em um alvo dentro de 9 metros e faz um Teste de Intimidação (DC 12). Se bem-sucedido, o alvo se sente ameaçado e hesita antes de tomar qualquer ação contra você no próximo turno.",
-                "requisitos": "O alvo precisa estar ciente da sua presença."
-            },
-            #Nível 1 – Alquimia e Ciência
-            {
-                "nivel": 1,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Névoa Cega",
-                "efeito": "Você espalha um gás denso em uma área de 3 metros de raio. Criaturas dentro da área devem fazer um Teste de Constituição (DC 12) ou terão desvantagem em ataques à distância por 1d4 turnos.",
-                "requisitos": "Precisa de um frasco de reagente químico apropriado."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Explosão Controlada",
-                "efeito": "Você pode preparar e detonar uma carga explosiva pequena que causa 2d6 de dano em um raio de 1,5 metros. Criaturas no raio devem fazer um Teste de Destreza (DC 12) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de pólvora ou material inflamável."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Óleo Deslizante",
-                "efeito": "Você espalha uma substância escorregadia em um raio de 3 metros. Criaturas na área devem fazer um Teste de Destreza (DC 12) ou caem no chão.",
-                "requisitos": "Precisa de um frasco de óleo ou graxa."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Tônico Revigorante",
-                "efeito": "Um aliado que beber a mistura recupera 1d6 PV imediatamente.",
-                "requisitos": "Precisa de ervas ou ingredientes medicinais."
-            },
-            #Nível 1 – Ilusões e Truques
-            {
-                "nivel": 1,
-                "tipo": "Ilusões e Truques",
-                "nome": "Sombra Ilusória",
-                "efeito": "Você projeta uma sombra anormal e distorcida em uma parede ou chão. Criaturas que veem devem fazer um Teste de Sabedoria (DC 12) ou hesitam por 1 turno, tentando entender a ilusão.",
-                "requisitos": "Precisa de uma fonte de luz próxima."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Ilusões e Truques",
-                "nome": "Voz Distante",
-                "efeito": "Você pode falar como se sua voz viesse de outro ponto a até 12 metros. Criaturas desatentas devem fazer um Teste de Percepção (DC 12) para notar a farsa.",
-                "requisitos": "Sua boca não pode estar visível enquanto usa essa habilidade."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Ilusões e Truques",
-                "nome": "Reflexo Falso",
-                "efeito": "Você pode criar uma cópia ligeiramente distorcida de si mesmo por 1d4 turnos. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 12) ou erram o primeiro ataque.",
-                "requisitos": "Precisa estar em um local com superfícies reflexivas."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Ilusões e Truques",
-                "nome": "Visão Turva",
-                "efeito": "Você faz com que um alvo a 6 metros tenha sua visão embaralhada por 1 rodada. Ele deve fazer um Teste de Constituição (DC 12) ou sofrer desvantagem em ataques.",
-                "requisitos": "Precisa estar a pelo menos 6 metros do alvo."
-            },
-            #Nível 1 – Rituais e Misticismo
-            {
-                "nivel": 1,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Bênção Espiritual",
-                "efeito": "Você toca um aliado, concedendo-lhe +1 em um teste de habilidade ou ataque nos próximos 10 minutos.",
-                "requisitos": "Precisa tocar o alvo diretamente ou segurar um símbolo sagrado."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Profecia Oportuna",
-                "efeito": "Você pode fazer um Teste de Enganação (DC 14) para convencer alguém de que um evento iminente foi previsto. O alvo hesita antes de tomar uma decisão importante.",
-                "requisitos": "Precisa estar em um ambiente ritualístico ou ter símbolos divinatórios."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Aura de Reverência",
-                "efeito": "Criaturas dentro de um raio de 3 metros sentem um respeito inconsciente por você. Criaturas hostis devem fazer um Teste de Sabedoria (DC 12) ou hesitam antes de atacá-lo pela primeira vez.",
-                "requisitos": "Precisa de um objeto de valor simbólico (medalhão, insígnia, manto)."
-            },
-            {
-                "nivel": 1,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Medo Sagrado",
-                "efeito": "Você recita palavras místicas e foca sua presença em um alvo dentro de 9 metros. Ele deve fazer um Teste de Sabedoria (DC 12) ou ficará amedrontado por 1 turno.",
-                "requisitos": "Precisa estar em um ambiente onde a crença do alvo seja relevante (igreja, cemitério, altar)."
-            },
-            #Nível 2 – Hipnose e Manipulação
-            {
-                "nivel": 2,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Comando Irresistível",
-                "efeito": "Você dá uma ordem curta e precisa para um alvo a até 9 metros. Ele deve fazer um Teste de Sabedoria (DC 14) ou seguirá o comando por 1d4 turnos (ex: 'Durma!', 'Fuja!', 'Ajoelhe-se!').",
-                "requisitos": "O comando deve ser algo que o alvo possa cumprir imediatamente e não pode ser autodestrutivo."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Distorção da Memória",
-                "efeito": "Você altera uma lembrança recente do alvo. Ele deve fazer um Teste de Inteligência (DC 14) ou passará a lembrar do evento de forma diferente.",
-                "requisitos": "O alvo deve estar distraído ou conversando com você por pelo menos 30 segundos."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Paralisia Mental",
-                "efeito": "Um alvo dentro de 6 metros faz um Teste de Sabedoria (DC 14). Se falhar, ele fica incapaz de agir por 1 turno, apenas olhando fixamente para você.",
-                "requisitos": "O alvo precisa estar consciente e não pode estar em combate intenso."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Influência Duradoura",
-                "efeito": "Você convence um NPC de que você é um aliado confiável. Ele deve fazer um Teste de Sabedoria (DC 14) ou será amigável com você por 1 hora, a menos que sofra dano ou tenha um motivo forte para suspeitar.",
-                "requisitos": "O alvo deve entender sua língua e não pode ser hostil no momento da tentativa."
-            },
-            #Nível 2 – Alquimia e Ciência
-            {
-                "nivel": 2,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Fumaça Negra",
-                "efeito": "Você cria uma nuvem de 6 metros de raio que obscurece a visão por 1d4 turnos. Criaturas dentro dela não podem ver nada além de 1 metro de distância.",
-                "requisitos": "Precisa de um recipiente com carvão em pó e substâncias inflamáveis."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Soro da Verdade",
-                "efeito": "Você mistura uma substância que força um alvo a revelar informações. Ele deve fazer um Teste de Constituição (DC 14) ou não poderá mentir por 10 minutos.",
-                "requisitos": "Precisa de ervas específicas ou um destilado químico refinado."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Mistura Tóxica",
-                "efeito": "Você pode criar um veneno que, quando ingerido ou aplicado em uma arma, causa 2d6 de dano e impõe desvantagem em Testes de Constituição por 1d4 turnos.",
-                "requisitos": "Precisa de veneno natural ou substâncias corrosivas."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Óleo Inflamável",
-                "efeito": "Você espalha um líquido altamente inflamável em uma área de 3 metros. Se uma chama atingir essa área, ela explode causando 2d6 de dano.",
-                "requisitos": "Precisa de um recipiente com óleo destilado."
-            },
-            #Nível 2 – Ilusões e Truques
-            {
-                "nivel": 2,
-                "tipo": "Ilusões e Truques",
-                "nome": "Disfarce Perfeito",
-                "efeito": "Você pode alterar sua aparência por 1 hora, mudando detalhes como cor de cabelo, feições e até a voz. Um alvo deve fazer um Teste de Investigação (DC 14) para perceber a farsa.",
-                "requisitos": "Precisa de materiais de disfarce (tinta, maquiagem, tecidos)."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Ilusões e Truques",
-                "nome": "Voz Fantasma",
-                "efeito": "Você pode imitar perfeitamente a voz de alguém por 10 minutos, incluindo o tom e padrão de fala. Um alvo atento pode fazer um Teste de Percepção (DC 14) para perceber a farsa.",
-                "requisitos": "Precisa ter ouvido a voz da pessoa por pelo menos 30 segundos."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Ilusões e Truques",
-                "nome": "Imagem Persistente",
-                "efeito": "Você cria uma ilusão visual de um objeto ou criatura de até 1,5 metros, que dura 5 minutos. Criaturas que tocarem na ilusão devem fazer um Teste de Inteligência (DC 14) para perceber que é falso.",
-                "requisitos": "Precisa de um objeto focalizador como um espelho ou cristal."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Ilusões e Truques",
-                "nome": "Silhueta Sombria",
-                "efeito": "Você pode se esconder nas sombras de forma quase sobrenatural. Sempre que estiver em um ambiente escuro, ganha vantagem em Testes de Furtividade por 1d4 turnos.",
-                "requisitos": "Precisa estar em uma área com sombras fortes."
-            },
-            #Nível 2 – Rituais e Misticismo
-            {
-                "nivel": 2,
-                "tipo": "Rituais e Misticismo",
-                "nome": "O Chamado dos Espíritos",
-                "efeito": "Você recita um cântico, criando um eco misterioso no ambiente. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 14) ou acreditar que há uma presença sobrenatural.",
-                "requisitos": "Precisa estar em um local silencioso e escuro."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Maldição do Opressor",
-                "efeito": "Você amaldiçoa um inimigo, fazendo-o duvidar de sua própria autoridade. Ele deve fazer um Teste de Sabedoria (DC 14) ou terá desvantagem em testes sociais por 1 hora.",
-                "requisitos": "Precisa de um objeto ligado ao alvo (assinatura, cabelo, símbolo pessoal)."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Marca Ritualística",
-                "efeito": "Você desenha um símbolo místico que só pode ser visto por aqueles que você escolher. O símbolo dura 24 horas.",
-                "requisitos": "Precisa de giz, carvão ou tinta."
-            },
-            {
-                "nivel": 2,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Bênção do Orador",
-                "efeito": "Você toca um aliado e concede a ele +2 em Testes de Carisma por 10 minutos.",
-                "requisitos": "Precisa tocar o alvo diretamente ou recitar uma oração."
-            },
-            #Nível 3 – Hipnose e Manipulação
-            {
-                "nivel": 3,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Controle Indireto",
-                "efeito": "Você implanta uma ordem na mente de um alvo dentro de 9 metros. Ele deve fazer um Teste de Sabedoria (DC 15). Se falhar, ele seguirá a ordem indiretamente, sem perceber que foi influenciado.",
-                "requisitos": "O alvo precisa confiar minimamente em você ou estar distraído."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Sugestão Avançada",
-                "efeito": "Você pode sugerir uma ação para um alvo dentro de 9 metros, que deve fazer um Teste de Sabedoria (DC 15). Se falhar, ele obedecerá a sugestão por até 1 hora, desde que não seja autodestrutiva.",
-                "requisitos": "O alvo precisa ouvir a sugestão e entendê-la."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Dissociação Mental",
-                "efeito": "O alvo dentro de 6 metros deve fazer um Teste de Inteligência (DC 15) ou terá dificuldade em distinguir o que é real, sofrendo desvantagem em Testes de Percepção por 10 minutos.",
-                "requisitos": "O alvo precisa estar confuso, alcoolizado ou vulnerável emocionalmente."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Dupla Personalidade",
-                "efeito": "Você pode influenciar um alvo a assumir um comportamento oposto ao seu natural por 10 minutos. Ele deve fazer um Teste de Sabedoria (DC 15) para resistir.",
-                "requisitos": "O alvo precisa estar emocionalmente instável."
-            },
-            #Nível 3 – Alquimia e Ciência
-            {
-                "nivel": 3,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Explosivo de Impacto",
-                "efeito": "Você prepara um dispositivo que pode ser arremessado e explode ao impacto, causando 3d6 de dano em um raio de 3 metros. Criaturas no raio devem fazer um Teste de Destreza (DC 15) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de pólvora e materiais inflamáveis."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Gás Enfraquecedor",
-                "efeito": "Você libera um gás que afeta um raio de 4 metros. Criaturas expostas devem fazer um Teste de Constituição (DC 15) ou terão desvantagem em Testes de Força e Destreza por 1d4 turnos.",
-                "requisitos": "Precisa de uma ampola de vidro e um reagente químico."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Veneno Mortal",
-                "efeito": "Você prepara um veneno que, ao ser ingerido ou aplicado em uma arma, causa 4d6 de dano ao longo de 10 minutos. O alvo pode fazer um Teste de Constituição (DC 15) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de substâncias altamente tóxicas."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Neutralizador de Veneno",
-                "efeito": "Você pode criar um antídoto capaz de remover os efeitos de venenos comuns e drogas.",
-                "requisitos": "Precisa de ingredientes alquímicos e um laboratório improvisado."
-            },
-            #Nível 3 – Ilusões e Truques
-            {
-                "nivel": 3,
-                "tipo": "Ilusões e Truques",
-                "nome": "Imagem Avançada",
-                "efeito": "Você pode criar uma ilusão visual de até 2 metros de altura, que dura 10 minutos e pode se mover dentro da área desejada. Criaturas podem fazer um Teste de Inteligência (DC 15) para perceber a farsa.",
-                "requisitos": "Precisa de um objeto focalizador como um espelho ou cristal."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Ilusões e Truques",
-                "nome": "Som Atmosférico",
-                "efeito": "Você pode gerar um ambiente sonoro falso (murmúrios, trovões, batidas) em um raio de 12 metros por 10 minutos.",
-                "requisitos": "Precisa estar em um ambiente onde o som possa ecoar."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Ilusões e Truques",
-                "nome": "Reflexo Enganoso",
-                "efeito": "Você pode criar uma cópia ligeiramente distorcida de si mesmo que dura 1d6 turnos. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 15) ou erram o primeiro ataque.",
-                "requisitos": "Precisa estar em um local com superfícies reflexivas."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Ilusões e Truques",
-                "nome": "Ofuscação Total",
-                "efeito": "Você pode fazer sua presença parecer insignificante, reduzindo sua chance de ser notado. Criaturas que não estiverem focadas em você devem fazer um Teste de Percepção (DC 15) para perceber sua presença.",
-                "requisitos": "Precisa estar em meio a uma multidão ou ambiente caótico."
-            },
-            #Nível 3 – Rituais e Misticismo
-            {
-                "nivel": 3,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Chamado do Além",
-                "efeito": "Você cria um efeito ritualístico assustador. Criaturas supersticiosas dentro de 9 metros devem fazer um Teste de Sabedoria (DC 15) ou ficarão amedrontadas por 1 minuto.",
-                "requisitos": "Precisa de um símbolo ritualístico ou um ambiente adequado (cemitério, altar, ruínas)."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Marca Espiritual",
-                "efeito": "Você pode desenhar um símbolo que cria desconforto em quem o vê. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 15) ou evitarão o local por medo.",
-                "requisitos": "Precisa de tinta especial ou sangue."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Domínio da Palavra",
-                "efeito": "Você pode convencer um grupo de até 6 pessoas dentro de 6 metros a seguir suas ordens por 1d4 turnos, desde que as ordens não sejam obviamente prejudiciais a eles.",
-                "requisitos": "Precisa estar em um ambiente onde sua voz possa se propagar (praça, templo, reunião)."
-            },
-            {
-                "nivel": 3,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Exibição Divina",
-                "efeito": "Você pode criar um efeito visual simbólico (luz que brilha sobre você, sombras alongadas, fogo falso) que impressiona espectadores e aumenta sua credibilidade. NPCs religiosos fazem um Teste de Sabedoria (DC 15) para resistir à crença de que você tem poder sobrenatural.",
-                "requisitos": "Precisa estar em um ambiente de crença religiosa ou usar um símbolo de poder."
-            },
-            #Nível 4 – Hipnose e Manipulação
-            {
-                "nivel": 4,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Sugestão Absoluta",
-                "efeito": "Você pode ordenar uma ação complexa para um alvo dentro de 9 metros, que deve fazer um Teste de Sabedoria (DC 16). Se falhar, ele seguirá a ordem por até 1 hora ou até completar a tarefa.",
-                "requisitos": "O alvo precisa estar ouvindo e consciente."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Controle Emocional",
-                "efeito": "Você pode induzir um alvo dentro de 6 metros a sentir uma emoção específica (medo, raiva, tristeza, confiança). Ele deve fazer um Teste de Sabedoria (DC 16) para resistir. O efeito dura 10 minutos.",
-                "requisitos": "O alvo precisa estar emocionalmente vulnerável."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Implantação de Memória",
-                "efeito": "Você pode modificar ou implantar uma lembrança no alvo. Ele deve fazer um Teste de Inteligência (DC 16). Se falhar, lembrará do evento como se fosse real.",
-                "requisitos": "A interação precisa durar pelo menos 5 minutos."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Marionete Humana",
-                "efeito": "Você pode induzir um alvo a imitar seus movimentos por 1d4 turnos. Ele deve fazer um Teste de Sabedoria (DC 16) para resistir.",
-                "requisitos": "Precisa estar a 3 metros do alvo e ser visível para ele."
-            },
-            #Nível 4 – Alquimia e Ciência
-            {
-                "nivel": 4,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Explosivo Devastador",
-                "efeito": "Você cria uma carga que pode ser detonada remotamente, causando 5d6 de dano em um raio de 6 metros. Criaturas na área fazem um Teste de Destreza (DC 16) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de pólvora, chumbo e um detonador mecânico."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Gás Paralisante",
-                "efeito": "Você libera um gás que cobre 6 metros de raio. Criaturas expostas devem fazer um Teste de Constituição (DC 16) ou ficarão paralisadas por 1d4 turnos.",
-                "requisitos": "Precisa de um composto químico refinado e um frasco pressurizado."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Veneno Letal",
-                "efeito": "Você cria um veneno mortal que, quando ingerido ou aplicado em uma arma, causa 6d6 de dano ao longo de 1 minuto. O alvo pode fazer um Teste de Constituição (DC 16) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de substâncias altamente tóxicas e tempo para refiná-las."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Elixir da Imunidade",
-                "efeito": "Você pode criar um tônico que concede imunidade a venenos e doenças por 1 hora.",
-                "requisitos": "Precisa de ingredientes medicinais raros."
-            },
-            #Nível 4 – Ilusões e Truques
-            {
-                "nivel": 4,
-                "tipo": "Ilusões e Truques",
-                "nome": "Imagem Persistente",
-                "efeito": "Você pode criar uma ilusão visual e auditiva de até 3 metros de altura, que dura 30 minutos. Criaturas podem fazer um Teste de Inteligência (DC 16) para perceber a farsa.",
-                "requisitos": "Precisa de um objeto focalizador como um espelho ou cristal."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Ilusões e Truques",
-                "nome": "Desaparecimento Fantasma",
-                "efeito": "Você pode se tornar praticamente invisível em sombras ou fumaça por 5 minutos. Criaturas que tentarem te detectar fazem um Teste de Percepção (DC 16).",
-                "requisitos": "Precisa estar em um ambiente com sombras fortes ou neblina."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Ilusões e Truques",
-                "nome": "Duplicata Realista",
-                "efeito": "Você pode criar uma ilusão idêntica a si mesmo que imita seus gestos por 1 minuto. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 16) ou atacarão a cópia.",
-                "requisitos": "Precisa estar em um local aberto onde a cópia possa se mover."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Ilusões e Truques",
-                "nome": "Camuflagem Perfeita",
-                "efeito": "Você se mistura completamente ao ambiente, ganhando vantagem em Testes de Furtividade por 10 minutos.",
-                "requisitos": "Precisa de roupas ou materiais que combinem com o ambiente."
-            },
-            #Nível 4 – Rituais e Misticismo
-            {
-                "nivel": 4,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Visão Profética",
-                "efeito": "Você pode convencer um grupo de até 10 pessoas de que previu um evento. Elas devem fazer um Teste de Sabedoria (DC 16) ou acreditar que suas previsões são reais.",
-                "requisitos": "Precisa de um ambiente cerimonial ou um objeto simbólico."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Marca do Destino",
-                "efeito": "Você pode marcar um alvo com um símbolo místico visível apenas para certas pessoas. Ele dura 24 horas e pode ser reconhecido por outros cultistas ou seguidores.",
-                "requisitos": "Precisa de tinta ritualística ou sangue."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Domínio Coletivo",
-                "efeito": "Você pode influenciar um grupo de até 6 pessoas dentro de 9 metros para que sigam suas ordens por 1d4 turnos.",
-                "requisitos": "Precisa estar discursando ou realizando um gesto chamativo."
-            },
-            {
-                "nivel": 4,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Chama do Juízo",
-                "efeito": "Você pode acender um fogo ritualístico que brilha intensamente, criando um efeito intimidador em quem vê. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 16) ou ficarão amedrontadas.",
-                "requisitos": "Precisa de madeira, óleo inflamável e um símbolo ritualístico."
-            },
-            #Nível 5 – Hipnose e Manipulação
-            {
-                "nivel": 5,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Submissão Total",
-                "efeito": "Você pode comandar um alvo dentro de 9 metros a seguir uma ordem específica por até 1 hora. Ele deve fazer um Teste de Sabedoria (DC 18) para resistir.",
-                "requisitos": "O alvo precisa confiar minimamente em você ou estar em estado de vulnerabilidade emocional."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Reformulação Mental",
-                "efeito": "Você pode modificar traços da personalidade de um alvo, tornando-o mais agressivo, pacífico ou manipulável. Ele deve fazer um Teste de Inteligência (DC 18) ou aceitar a mudança como natural.",
-                "requisitos": "O alvo precisa estar em uma conversa prolongada ou exposto a um estado alterado de consciência (álcool, meditação, exaustão)."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Desconexão da Realidade",
-                "efeito": "Um alvo dentro de 9 metros deve fazer um Teste de Sabedoria (DC 18) ou perderá a conexão com o presente, agindo de forma confusa por 1d6 turnos.",
-                "requisitos": "O alvo deve estar em uma situação de estresse psicológico ou confusão."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Hipnose e Manipulação",
-                "nome": "Controle de Grupo",
-                "efeito": "Você pode influenciar até 5 alvos dentro de 6 metros, induzindo-os a seguir uma sugestão geral por 1 minuto. Eles fazem um Teste de Sabedoria (DC 18) para resistir.",
-                "requisitos": "Precisa estar discursando ou em uma posição de liderança."
-            },
-            #Nível 5 – Alquimia e Ciência
-            {
-                "nivel": 5,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Explosão Demolidora",
-                "efeito": "Você cria um dispositivo capaz de destruir estruturas e causar 6d6 de dano em um raio de 9 metros. Criaturas na área devem fazer um Teste de Destreza (DC 18) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de pólvora reforçada, chumbo e um mecanismo de ativação."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Nevoeiro Corrosivo",
-                "efeito": "Você libera um gás tóxico que cobre um raio de 9 metros. Criaturas dentro da área fazem um Teste de Constituição (DC 18) ou sofrem 4d6 de dano ácido ao longo de 1 minuto.",
-                "requisitos": "Precisa de compostos químicos refinados e um método de dispersão."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Toxina Letal",
-                "efeito": "Você pode criar um veneno quase indetectável que, quando ingerido ou aplicado em uma arma, causa 8d6 de dano ao longo de 5 minutos. O alvo pode fazer um Teste de Constituição (DC 18) para reduzir o dano pela metade.",
-                "requisitos": "Precisa de veneno natural altamente refinado."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Alquimia e Ciência",
-                "nome": "Elixir do Imortal",
-                "efeito": "Você pode criar um tônico que concede imunidade a venenos, doenças e efeitos intoxicantes por 24 horas.",
-                "requisitos": "Precisa de ingredientes extremamente raros e um laboratório improvisado."
-            },
-            #Nível 5 – Ilusões e Truques
-            {
-                "nivel": 5,
-                "tipo": "Ilusões e Truques",
-                "nome": "Miragem Perfeita",
-                "efeito": "Você pode criar uma ilusão visual e auditiva de até 6 metros de altura, que dura 1 hora. Criaturas podem fazer um Teste de Inteligência (DC 18) para perceber a farsa.",
-                "requisitos": "Precisa de um objeto focalizador como um espelho ou cristal."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Ilusões e Truques",
-                "nome": "Desvanecimento Total",
-                "efeito": "Você pode desaparecer completamente por 5 minutos, tornando-se indetectável por métodos normais. Criaturas que tentarem te encontrar devem fazer um Teste de Percepção (DC 18).",
-                "requisitos": "Precisa estar em um ambiente onde seja possível se esconder (sombra, multidão, fumaça)."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Ilusões e Truques",
-                "nome": "Duplicata Perfeita",
-                "efeito": "Você pode criar uma cópia idêntica de si mesmo que dura 10 minutos e pode se mover independentemente. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 18) ou atacarão a cópia.",
-                "requisitos": "Precisa estar em um local aberto onde a cópia possa se mover livremente."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Ilusões e Truques",
-                "nome": "Invisibilidade Sensorial",
-                "efeito": "Você pode se tornar imperceptível para um alvo específico, que não notará sua presença a menos que seja tocado diretamente. O efeito dura 1 minuto.",
-                "requisitos": "Precisa de um foco para confundir o alvo (barulho, multidão, fumaça)."
-            },
-            #Nível 5 – Rituais e Misticismo
-            {
-                "nivel": 5,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Influência Massiva",
-                "efeito": "Você pode convencer um grupo de até 20 pessoas dentro de 9 metros de que suas palavras são a verdade absoluta. Eles devem fazer um Teste de Sabedoria (DC 18) ou seguirão suas instruções por 1 hora.",
-                "requisitos": "Precisa estar em um ambiente de autoridade ou cerimonial (igreja, assembleia, tribunal)."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Marca de Temor",
-                "efeito": "Você pode marcar um local ou pessoa com um símbolo místico visível apenas para certos indivíduos. Quem vê a marca deve fazer um Teste de Sabedoria (DC 18) ou evitará o local por medo.",
-                "requisitos": "Precisa de um material ritualístico ou um objeto consagrado."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Domínio Completo",
-                "efeito": "Você pode influenciar até 10 alvos dentro de 9 metros para que sigam suas ordens por 1d6 turnos.",
-                "requisitos": "Precisa estar em um evento público ou com seguidores fiéis."
-            },
-            {
-                "nivel": 5,
-                "tipo": "Rituais e Misticismo",
-                "nome": "Manifestação Divina",
-                "efeito": "Você pode criar um efeito visual avassalador (um raio atingindo um altar, fogo surgindo do nada, sombras se movimentando) que impressiona espectadores e reforça sua autoridade. NPCs supersticiosos fazem um Teste de Sabedoria (DC 18) para resistir.",
-                "requisitos": "Precisa de um local sagrado ou uma ferramenta cerimonial (medalhão, cajado, insígnia)."
-            },
-        ]
+        {
+            "Nome": "Palavras Enfáticas",
+            "Nível": "0",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você escolhe um alvo a até 6 metros e faz um Teste de Persuasão (DC 12). Se bem-sucedido, ele presta atenção total em você por 30 segundos, ignorando distrações leves.",
+            "Requisitos": "O alvo precisa entender sua língua."
+        },
+        {
+            "Nome": "Olhos Penetrantes",
+            "Nível": "0",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode fazer um Teste de Intuição (DC 12) para detectar o estado emocional do alvo (nervoso, mentindo, assustado, calmo, etc.).",
+            "Requisitos": "Precisa manter contato visual por pelo menos 5 segundos."
+        },
+        {
+            "Nome": "Controle de Voz",
+            "Nível": "0",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode alterar levemente sua voz (mais grave, mais aguda, rouca ou firme) por 5 minutos, tornando-a mais intimidadora ou persuasiva.",
+            "Requisitos": "O efeito é apenas auditivo e não engana quem já conhece bem sua voz."
+        },
+        {
+            "Nome": "Queima Controlada",
+            "Nível": "0",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode acender ou apagar pequenas chamas (velas, lamparinas, fósforos) em um raio de 3 metros.",
+            "Requisitos": "Precisa de uma fonte de fogo próxima."
+        },
+        {
+            "Nome": "Teste de Veneno",
+            "Nível": "0",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode identificar a presença de venenos ou drogas em um líquido com um Teste de Medicina (DC 12).",
+            "Requisitos": "Precisa observar ou cheirar o líquido por pelo menos 10 segundos."
+        },
+        {
+            "Nome": "Reação Química",
+            "Nível": "0",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode misturar pequenas substâncias para produzir um estalo alto, fumaça leve ou um brilho breve.",
+            "Requisitos": "Precisa ter acesso a materiais químicos básicos."
+        },
+        {
+            "Nome": "Corte e Esterilização",
+            "Nível": "0",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode limpar e desinfetar uma ferida pequena, prevenindo infecções. Se usado antes de um descanso, permite recuperar +1 PV.",
+            "Requisitos": "Precisa de álcool ou outra substância desinfetante."
+        },
+        {
+            "Nome": "Reflexo Enganoso",
+            "Nível": "0",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode fazer com que uma luz seja refletida de forma a distrair ou cegar um alvo por 1 turno. O alvo deve fazer um Teste de Constituição (DC 12) ou sofrer desvantagem na próxima ação.",
+            "Requisitos": "Precisa de um objeto metálico\"ou devidro."
+        },
+        {
+            "Nome": "Passos Falsos",
+            "Nível": "0",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode fazer um ruído semelhante ao som de passos vindo de um ponto a até 10 metros.",
+            "Requisitos": "O local precisa ter materiais como madeira ou pedra para ecoar o som."
+        },
+        {
+            "Nome": "Som Fantasma",
+            "Nível": "0",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode imitar a voz de uma pessoa que já ouviu antes, mas apenas por frases curtas. Alvos desatentos devem fazer um Teste de Percepção (DC 12) para perceber a farsa.",
+            "Requisitos": "O som não pode ter tons muito complexos, como grito\"s ou cantos."
+        },
+        {
+            "Nome": "Tinta Invisível",
+            "Nível": "0",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode escrever algo que só se tornará visível sob uma condição específica (exemplo: calor, água, luz forte).",
+            "Requisitos": "Precisa ter uma tinta especial ou um reagente químico."
+        },
+        {
+            "Nome": "Sussurros Espirituais",
+            "Nível": "0",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode murmurar palavras indecifráveis que parecem vir de diferentes direções em um raio de 3 metros, assustando ouvintes desatentos.",
+            "Requisitos": "Funciona melhor em locais silenciosos ou escuros."
+        },
+        {
+            "Nome": "Símbolo de Proteção",
+            "Nível": "0",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode desenhar um símbolo místico em um objeto ou parede. Pessoas supersticiosas precisarão fazer um Teste de Sabedoria (DC 12) para ignorá-lo.",
+            "Requisitos": "Precisa de um material para desenhar, como carvão ou giz."
+        },
+        {
+            "Nome": "Brisa Cerimonial",
+            "Nível": "0",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode criar uma corrente de ar súbita que movimenta tecidos, velas ou faz a poeira subir levemente.",
+            "Requisitos": "Precisa estar ao ar livre ou próximo de uma entrada aberta."
+        },
+        {
+            "Nome": "Aura de Devoção",
+            "Nível": "0",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Pessoas ao seu redor sentem uma leve confiança ou temor em relação a você, dependendo de sua intenção.",
+            "Requisitos": "Precisa de um símbolo religioso visível."
+        },
+        {
+            "Nome": "Falsa Lembrança",
+            "Nível": "1",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você planta uma lembrança vaga e confusa na mente do alvo. Ele deve fazer um Teste de Inteligência (DC 12) ou acreditará que o evento aconteceu, mas sem detalhes claros.",
+            "Requisitos": "O alvo precisa estar distraído ou receptivo\"à conversa."
+        },
+        {
+            "Nome": "Névoa Cega",
+            "Nível": "1",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você espalha um gás denso em uma área de 3 metros de raio. Criaturas dentro da área devem fazer um Teste de Constituição (DC 12) ou terão desvantagem em ataques à distância por 1d4 turnos.",
+            "Requisitos": "Precisa de um frasco de reagente\"químico apropriado."
+        },
+        {
+            "Nome": "Explosão Controlada",
+            "Nível": "1",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode preparar e detonar uma carga explosiva pequena que causa 2d6 de dano em um raio de 1,5 metros. Criaturas no raio devem fazer um Teste de Destreza (DC 12) para reduzir o dano pela metade.",
+            "Requisitos": "Precisa de pólv\"ora oumaterial inflamável."
+        },
+        {
+            "Nome": "Óleo Deslizante",
+            "Nível": "1",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você espalha uma substância escorregadia em um raio de 3 metros. Criaturas na área devem fazer um Teste de Destreza (DC 12) ou caem no chão.",
+            "Requisitos": "Precisa de um frasco de óleo ou graxa."
+        },
+        {
+            "Nome": "Tônico Revigorante",
+            "Nível": "1",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Um aliado que beber a mistura recupera 1d6 PV imediatamente.",
+            "Requisitos": "Precisa de ervas ou ingredientes medicinais."
+        },
+        {
+            "Nome": "Sombra Ilusória",
+            "Nível": "1",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você projeta uma sombra anormal e distorcida em uma parede ou chão. Criaturas que veem devem fazer um Teste de Sabedoria (DC 12) ou hesitam por 1 turno, tentando entender a ilusão.",
+            "Requisitos": "Precisa de uma fonte de luz próxima."
+        },
+        {
+            "Nome": "Voz Distante",
+            "Nível": "1",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode falar como se sua voz viesse de outro ponto a até 12 metros. Criaturas desatentas devem fazer um Teste de Percepção (DC 12) para notar a farsa.",
+            "Requisitos": "Sua boca não pode estar visível enquanto usa essa habilidade."
+        },
+        {
+            "Nome": "Visão Turva",
+            "Nível": "1",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você faz com que um alvo a 6 metros tenha sua visão embaralhada por 1 rodada. Ele deve fazer um Teste de Constituição (DC 12) ou sofrer desvantagem em ataques.",
+            "Requisitos": "Precisa estar a pelo menos 6 metros do alvo."
+        },
+        {
+            "Nome": "Bênção Espiritual",
+            "Nível": "1",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você toca um aliado, concedendo-lhe +1 em um teste de habilidade ou ataque nos próximos 10 minutos.",
+            "Requisitos": "Precisa tocar o alvo diretamente ou segurar um símbolo sagrado."
+        },
+        {
+            "Nome": "Profecia Oportuna",
+            "Nível": "1",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode fazer um Teste de Enganação (DC 14) para convencer alguém de que um evento iminente foi previsto. O alvo hesita antes de tomar uma decisão importante.",
+            "Requisitos": "Precisa estar em um ambiente ritualístico ou ter sí\"mbolosdivinatórios."
+        },
+        {
+            "Nome": "Aura de Reverência",
+            "Nível": "1",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Criaturas dentro de um raio de 3 metros sentem um respeito inconsciente por você. Criaturas hostis devem fazer um Teste de Sabedoria (DC 12) ou hesitam antes de atacá-lo pela primeira vez.",
+            "Requisitos": "Precisa de um objeto d\"e valor simbólico (medalhão, insígnia, manto)."
+        },
+        {
+            "Nome": "Medo Sagrado",
+            "Nível": "1",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você recita palavras místicas e foca sua presença em um alvo dentro de 9 metros. Ele deve fazer um Teste de Sabedoria (DC 12) ou ficará amedrontado por 1 turno.",
+            "Requisitos": "Precisa estar em um ambiente onde a crença do alvo seja\"relevante (igreja, cemitério, altar)."
+        },
+        {
+            "Nome": "Comando Irresistível",
+            "Nível": "2",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você dá uma ordem curta e precisa para um alvo a até 9 metros. Ele deve fazer um Teste de Sabedoria (DC 14) ou seguirá o comando por 1d4 turnos (exemplo: \"\"\"\"Durma!\"\"\"\", \"\"\"\"Fuja!\"\"\"\", \"\"\"\"Ajoelhe-se!\"\"\"\").",
+            "Requisitos": "O comando d\"eve ser algo que o alvo possa cumprir imediatamente e não pode ser autodestrutivo."
+        },
+        {
+            "Nome": "Distorção da Memória",
+            "Nível": "2",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você altera uma lembrança recente do alvo. Ele deve fazer um Teste de Inteligência (DC 14) ou passará a lembrar do evento de forma diferente.",
+            "Requisitos": "O alvo deve estar distraído ou conversando com você por pelo menos\"30 segundos."
+        },
+        {
+            "Nome": "Paralisia Mental",
+            "Nível": "2",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Um alvo dentro de 6 metros faz um Teste de Sabedoria (DC 14). Se falhar, ele fica incapaz de agir por 1 turno, apenas olhando fixamente para você.",
+            "Requisitos": "O alvo precisa estar consciente e não pode estar em combate inten\"so."
+        },
+        {
+            "Nome": "Influência Duradoura",
+            "Nível": "2",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você convence um NPC de que você é um aliado confiável. Ele deve fazer um Teste de Sabedoria (DC 14) ou será amigável com você por 1 hora, a menos que sofra dano ou tenha um motivo forte para suspeitar.",
+            "Requisitos": "O alv\"o deveentender sua língua e não pode ser hostil no momento da tentativa."
+        },
+        {
+            "Nome": "Fumaça Negra",
+            "Nível": "2",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você cria uma nuvem de 6 metros de raio que obscurece a visão por 1d4 turnos. Criaturas dentro dela não podem ver nada além de 1 metro de distância.",
+            "Requisitos": "Precisa de um recipiente com carvão em pó e substâncias inflamáveis."
+        },
+        {
+            "Nome": "Soro da Verdade",
+            "Nível": "2",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você mistura uma substância que força um alvo a revelar informações. Ele deve fazer um Teste de Constituição (DC 14) ou não poderá mentir por 10 minutos.",
+            "Requisitos": "Precisa de ervas específicas ou um destilado químico refinado."
+        },
+        {
+            "Nome": "Mistura Tóxica",
+            "Nível": "2",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode criar um veneno que, quando ingerido ou aplicado em uma arma, causa 2d6 de dano e impõe desvantagem em Testes de Constituição por 1d4 turnos.",
+            "Requisitos": "Precisa de veneno natural ou substâncias corrosivas."
+        },
+        {
+            "Nome": "Óleo Inflamável",
+            "Nível": "2",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você espalha um líquido altamente inflamável em uma área de 3 metros. Se uma chama atingir essa área, ela explode causando 2d6 de dano.",
+            "Requisitos": "Precisa de um recipiente com óleo destilado."
+        },
+        {
+            "Nome": "Disfarce Perfeito",
+            "Nível": "2",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode alterar sua aparência por 1 hora, mudando detalhes como cor de cabelo, feições e até a voz. Um alvo deve fazer um Teste de Investigação (DC 14) para perceber a farsa.",
+            "Requisitos": "Precisa de materiais de disfarce (tint\"a, maquiagem, tecidos)."
+        },
+        {
+            "Nome": "Voz Fantasma",
+            "Nível": "2",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode imitar perfeitamente a voz de alguém por 10 minutos, incluindo o tom e padrão de fala. Um alvo atento pode fazer um Teste de Percepção (DC 14) para perceber a farsa.",
+            "Requisitos": "Precisa ter ouvido a voz da pessoa por pelo\"menos30 segundos."
+        },
+        {
+            "Nome": "Silhueta Sombria",
+            "Nível": "2",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode se esconder nas sombras de forma quase sobrenatural. Sempre que estiver em um ambiente escuro, ganha vantagem em Testes de Furtividade por 1d4 turnos.",
+            "Requisitos": "Precisa estar em uma área com sombras fortes."
+        },
+        {
+            "Nome": "O Chamado dos Espíritos",
+            "Nível": "2",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você recita um cântico, criando um eco misterioso no ambiente. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 14) ou acreditar que há uma presença sobrenatural.",
+            "Requisitos": "Precisa estar em um local sil\"encioso e escuro."
+        },
+        {
+            "Nome": "Maldição do Opressor",
+            "Nível": "2",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você amaldiçoa um inimigo, fazendo-o duvidar de sua própria autoridade. Ele deve fazer um Teste de Sabedoria (DC 14) ou terá desvantagem em testes sociais por 1 hora.",
+            "Requisitos": "Precisa de um objeto ligado ao alvo (assin\"atura,cabelo, símbolo pessoal)."
+        },
+        {
+            "Nome": "Marca Ritualística",
+            "Nível": "2",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você desenha um símbolo místico que só pode ser visto por aqueles que você escolher. O símbolo dura 24 horas.",
+            "Requisitos": "Precisa de giz, carvão ou tinta."
+        },
+        {
+            "Nome": "Bênção do Orador",
+            "Nível": "2",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você toca um aliado e concede a ele +2 em Testes de Carisma por 10 minutos.",
+            "Requisitos": "Precisa tocar o alvo diretamente ou recitar uma oração."
+        },
+        {
+            "Nome": "Controle Indireto",
+            "Nível": "3",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você implanta uma ordem na mente de um alvo dentro de 9 metros. Ele deve fazer um Teste de Sabedoria (DC 15). Se falhar, ele seguirá a ordem indiretamente, sem perceber que foi influenciado.",
+            "Requisitos": "O alvo precisa confi\"ar minimamente em você ou estar distraído."
+        },
+        {
+            "Nome": "Sugestão Avançada",
+            "Nível": "3",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode sugerir uma ação para um alvo dentro de 9 metros, que deve fazer um Teste de Sabedoria (DC 15). Se falhar, ele obedecerá a sugestão por até 1 hora, desde que não seja autodestrutiva.",
+            "Requisitos": "O alvo precisa ouv\"ir a sugestão e entendê-la."
+        },
+        {
+            "Nome": "Dissociação Mental",
+            "Nível": "3",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "O alvo dentro de 6 metros deve fazer um Teste de Inteligência (DC 15) ou terá dificuldade em distinguir o que é real, sofrendo desvantagem em Testes de Percepção por 10 minutos.",
+            "Requisitos": "O alvo precisa estar confuso, al\"coolizado ou vulnerável emocionalmente."
+        },
+        {
+            "Nome": "Dupla Personalidade",
+            "Nível": "3",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode influenciar um alvo a assumir um comportamento oposto ao seu natural por 10 minutos. Ele deve fazer um Teste de Sabedoria (DC 15) para resistir.",
+            "Requisitos": "O alvo precisa estar emocionalmente instável."
+        },
+        {
+            "Nome": "Explosivo de Impacto",
+            "Nível": "3",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você prepara um dispositivo que pode ser arremessado e explode ao impacto, causando 3d6 de dano em um raio de 3 metros. Criaturas no raio devem fazer um Teste de Destreza (DC 15) para reduzir o dano pela metade.\"",
+            "Requisitos": "Preci\"sa de pólvora e materiais inflamáveis."
+        },
+        {
+            "Nome": "Gás Enfraquecedor",
+            "Nível": "3",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você libera um gás que afeta um raio de 4 metros. Criaturas expostas devem fazer um Teste de Constituição (DC 15) ou terão desvantagem em Testes de Força e Destreza por 1d4 turnos.",
+            "Requisitos": "Precisa de uma ampola de vidro e\"um reagente químico."
+        },
+        {
+            "Nome": "Veneno Mortal",
+            "Nível": "3",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você prepara um veneno que, ao ser ingerido ou aplicado em uma arma, causa 4d6 de dano ao longo de 10 minutos. O alvo pode fazer um Teste de Constituição (DC 15) para reduzir o dano pela metade.",
+            "Requisitos": "Precisa de substâncias\"altamente tóxicas."
+        },
+        {
+            "Nome": "Neutralizador de Veneno",
+            "Nível": "3",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode criar um antídoto capaz de remover os efeitos de venenos comuns e drogas.",
+            "Requisitos": "Precisa de ingredientes alquímicos e um laboratório improvisado."
+        },
+        {
+            "Nome": "Imagem Avançada",
+            "Nível": "3",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode criar uma ilusão visual de até 2 metros de altura, que dura 10 minutos e pode se mover dentro da área desejada. Criaturas podem fazer um Teste de Inteligência (DC 15) para perceber a farsa.",
+            "Requisitos": "Precisa de um obj\"eto focalizador como um espelho ou cristal."
+        },
+        {
+            "Nome": "Som Atmosférico",
+            "Nível": "3",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode gerar um ambiente sonoro falso (murmúrios, trovões, batidas) em um raio de 12 metros por 10 minutos.",
+            "Requisitos": "Precisa estar em um ambiente onde o som possa ecoar."
+        },
+        {
+            "Nome": "Ofuscação Total",
+            "Nível": "3",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode fazer sua presença parecer insignificante, reduzindo sua chance de ser notado. Criaturas que não estiverem focadas em você devem fazer um Teste de Percepção (DC 15) para perceber sua presença.",
+            "Requisitos": "Precisa estar\"em meio a uma multidão ou ambiente caótico."
+        },
+        {
+            "Nome": "Chamado do Além",
+            "Nível": "3",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você cria um efeito ritualístico assustador. Criaturas supersticiosas dentro de 9 metros devem fazer um Teste de Sabedoria (DC 15) ou ficarão amedrontadas por 1 minuto.",
+            "Requisitos": "Precisa de um símbolo ritualístico ou um ambi\"ente adequado (cemitério, altar, ruínas)."
+        },
+        {
+            "Nome": "Marca Espiritual",
+            "Nível": "3",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode desenhar um símbolo que cria desconforto em quem o vê. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 15) ou evitarão o local por medo.",
+            "Requisitos": "Precisa de tinta especial ou sangue."
+        },
+        {
+            "Nome": "Domínio da Palavra",
+            "Nível": "3",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode convencer um grupo de até 6 pessoas dentro de 6 metros a seguir suas ordens por 1d4 turnos, desde que as ordens não sejam obviamente prejudiciais a eles.",
+            "Requisitos": "Precisa estar em um ambiente onde sua voz possa\"se propagar (praça, templo, reunião)."
+        },
+        {
+            "Nome": "Exibição Divina",
+            "Nível": "3",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode criar um efeito visual simbólico (luz que brilha sobre você, sombras alongadas, fogo falso) que impressiona espectadores e aumenta sua credibilidade. NPCs religiosos fazem um Teste de Sabedoria (DC 15) pa\"ra res\"istir à crença de que você tem poder sobrenatural.",
+            "Requisitos": "Precisa estar em um ambiente de crença religiosa ou usar um símbolo de poder."
+        },
+        {
+            "Nome": "Sugestão Absoluta",
+            "Nível": "4",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode ordenar uma ação complexa para um alvo dentro de 9 metros, que deve fazer um Teste de Sabedoria (DC 16). Se falhar, ele seguirá a ordem por até 1 hora ou até completar a tarefa.",
+            "Requisitos": "O alvo precisa estar ou\"vindoe consciente."
+        },
+        {
+            "Nome": "Controle Emocional",
+            "Nível": "4",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode induzir um alvo dentro de 6 metros a sentir uma emoção específica (medo, raiva, tristeza, confiança). Ele deve fazer um Teste de Sabedoria (DC 16) para resistir. O efeito dura 10 minutos.",
+            "Requisitos": "O alvo preci\"sa estar emocionalmente vulnerável."
+        },
+        {
+            "Nome": "Implantação de Memória",
+            "Nível": "4",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode modificar ou implantar uma lembrança no alvo. Ele deve fazer um Teste de Inteligência (DC 16). Se falhar, lembrará do evento como se fosse real.",
+            "Requisitos": "A interação precisa durar pelo menos 5 minutos."
+        },
+        {
+            "Nome": "Marionete Humana",
+            "Nível": "4",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode induzir um alvo a imitar seus movimentos por 1d4 turnos. Ele deve fazer um Teste de Sabedoria (DC 16) para resistir.",
+            "Requisitos": "Precisa estar a 3 metros do alvo e ser visível para ele."
+        },
+        {
+            "Nome": "Explosivo Devastador",
+            "Nível": "4",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você cria uma carga que pode ser detonada remotamente, causando 5d6 de dano em um raio de 6 metros. Criaturas na área fazem um Teste de Destreza (DC 16) para reduzir o dano pela metade.",
+            "Requisitos": "Precisa de pólvora, chumb\"o e umdetonador mecânico."
+        },
+        {
+            "Nome": "Gás Paralisante",
+            "Nível": "4",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você libera um gás que cobre 6 metros de raio. Criaturas expostas devem fazer um Teste de Constituição (DC 16) ou ficarão paralisadas por 1d4 turnos.",
+            "Requisitos": "Precisa de um composto químico refinado e um frasco pressurizado."
+        },
+        {
+            "Nome": "Veneno Letal",
+            "Nível": "4",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você cria um veneno mortal que, quando ingerido ou aplicado em uma arma, causa 6d6 de dano ao longo de 1 minuto. O alvo pode fazer um Teste de Constituição (DC 16) para reduzir o dano pela metade.",
+            "Requisitos": "Precisa de substâncias\"altamente tóxicas e tempo para refiná-las."
+        },
+        {
+            "Nome": "Elixir da Imunidade",
+            "Nível": "4",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode criar um tônico que concede imunidade a venenos e doenças por 1 hora.",
+            "Requisitos": "Precisa de ingredientes medicinais raros."
+        },
+        {
+            "Nome": "Imagem Persistente",
+            "Nível": "4",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode criar uma ilusão visual e auditiva de até 3 metros de altura, que dura 30 minutos. Criaturas podem fazer um Teste de Inteligência (DC 16) para perceber a farsa.",
+            "Requisitos": "Precisa de um objeto focalizador como um es\"pelhoou cristal."
+        },
+        {
+            "Nome": "Desaparecimento Fantasma",
+            "Nível": "4",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode se tornar praticamente invisível em sombras ou fumaça por 5 minutos. Criaturas que tentarem te detectar fazem um Teste de Percepção (DC 16).",
+            "Requisitos": "Precisa estar em um ambiente com sombras fortes ou neblin\"a."
+        },
+        {
+            "Nome": "Duplicata Realista",
+            "Nível": "4",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode criar uma ilusão idêntica a si mesmo que imita seus gestos por 1 minuto. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 16) ou atacarão a cópia.",
+            "Requisitos": "Precisa estar em um local aberto onde\"a cópia possa se mover."
+        },
+        {
+            "Nome": "Camuflagem Perfeita",
+            "Nível": "4",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você se mistura completamente ao ambiente, ganhando vantagem em Furtividade por 10 minutos.",
+            "Requisitos": "Precisa de roupas ou materiais que combinem com o ambiente."
+        },
+        {
+            "Nome": "Visão Profética",
+            "Nível": "4",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode convencer um grupo de até 10 pessoas de que previu um evento. Elas devem fazer um Teste de Sabedoria (DC 16) ou acreditar que suas previsões são reais.",
+            "Requisitos": "Precisa de um ambiente cerimonial ou um objeto simbó\"lico."
+        },
+        {
+            "Nome": "Marca do Destino",
+            "Nível": "4",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode marcar um alvo com um símbolo místico visível apenas para certas pessoas. Ele dura 24 horas e pode ser reconhecido por outros cultistas ou seguidores.",
+            "Requisitos": "Precisa de tinta ritualística ou sangue."
+        },
+        {
+            "Nome": "Domínio Coletivo",
+            "Nível": "4",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode influenciar um grupo de até 6 pessoas dentro de 9 metros para que sigam suas ordens por 1d4 turnos.",
+            "Requisitos": "Precisa estar discursando ou realizando um gesto chamativo."
+        },
+        {
+            "Nome": "Chama do Juízo",
+            "Nível": "4",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode acender um fogo ritualístico que brilha intensamente, criando um efeito intimidador em quem vê. Criaturas supersticiosas devem fazer um Teste de Sabedoria (DC 16) ou ficarão amedrontadas.",
+            "Requisitos": "Precisa de madeir\"a, óleo inflamável e um símbolo ritualístico."
+        },
+        {
+            "Nome": "Submissão Total",
+            "Nível": "5",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode comandar um alvo dentro de 9 metros a seguir uma ordem específica por até 1 hora. Ele deve fazer um Teste de Sabedoria (DC 18) para resistir.",
+            "Requisitos": "O alvo precisa confiar minimamente em você ou estar em estado\"de vulnerabilidade emocional."
+        },
+        {
+            "Nome": "Reformulação Mental",
+            "Nível": "5",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode modificar traços da personalidade de um alvo, tornando-o mais agressivo, pacífico ou manipulável. Ele deve fazer um Teste de Inteligência (DC 18) ou aceitar a mudança como natural.",
+            "Requisitos": "O alvo precisa est\"ar emuma conversa prolongada ou exposto a um estado alterado de consciência (álcool, meditação, exaustão)."
+        },
+        {
+            "Nome": "Desconexão da Realidade",
+            "Nível": "5",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Um alvo dentro de 9 metros deve fazer um Teste de Sabedoria (DC 18) ou perderá a conexão com o presente, agindo de forma confusa por 1d6 turnos.",
+            "Requisitos": "O alvo deve estar em uma situação de estresse psicológico ou\"confusão."
+        },
+        {
+            "Nome": "Controle de Grupo",
+            "Nível": "5",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você pode influenciar até 5 alvos dentro de 6 metros, induzindo-os a seguir uma sugestão geral por 1 minuto. Eles fazem um Teste de Sabedoria (DC 18) para resistir.",
+            "Requisitos": "Precisa estar discursando ou em uma posição de\"liderança."
+        },
+        {
+            "Nome": "Explosão Demolidora",
+            "Nível": "5",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você cria um dispositivo capaz de destruir estruturas e causar 6d6 de dano em um raio de 9 metros. Criaturas na área devem fazer um Teste de Destreza (DC 18) para reduzir o dano pela metade.",
+            "Requisitos": "Precisa de pólvora re\"forçada, chumbo e um mecanismo de ativação."
+        },
+        {
+            "Nome": "Nevoeiro Corrosivo",
+            "Nível": "5",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você libera um gás tóxico que cobre um raio de 9 metros. Criaturas dentro da área fazem um Teste de Constituição (DC 18) ou sofrem 4d6 de dano ácido ao longo de 1 minuto.",
+            "Requisitos": "Precisa de compostos químicos refinados e\"um método de dispersão."
+        },
+        {
+            "Nome": "Toxina Letal",
+            "Nível": "5",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode criar um veneno quase indetectável que, quando ingerido ou aplicado em uma arma, causa 8d6 de dano ao longo de 5 minutos. O alvo pode fazer um Teste de Constituição (DC 18) para reduzir o dano pela metade.",
+            "Requisitos": "Pre\"cisa de veneno natural altamente refinado."
+        },
+        {
+            "Nome": "Elixir do Imortal",
+            "Nível": "5",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você pode criar um tônico que concede imunidade a venenos, doenças e efeitos intoxicantes por 24 horas.",
+            "Requisitos": "Precisa de ingredientes extremamente raros e um laboratório improvisado."
+        },
+        {
+            "Nome": "Miragem Perfeita",
+            "Nível": "5",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode criar uma ilusão visual e auditiva de até 6 metros de altura, que dura 1 hora. Criaturas podem fazer um Teste de Inteligência (DC 18) para perceber a farsa.",
+            "Requisitos": "Precisa de um objeto focalizador como um espelho\"ou cristal."
+        },
+        {
+            "Nome": "Desvanecimento Total",
+            "Nível": "5",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode desaparecer completamente por 5 minutos, tornando-se indetectável por métodos normais. Criaturas que tentarem te encontrar devem fazer um Teste de Percepção (DC 18).",
+            "Requisitos": "Precisa estar em um ambiente onde se\"ja possível se esconder (sombra, multidão, fumaça)."
+        },
+        {
+            "Nome": "Duplicata Perfeita",
+            "Nível": "5",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode criar uma cópia idêntica de si mesmo que dura 10 minutos e pode se mover independentemente. Criaturas que atacarem você devem fazer um Teste de Inteligência (DC 18) ou atacarão a cópia.",
+            "Requisitos": "Precisa estar em u\"m local aberto onde a cópia possa se mover livremente."
+        },
+        {
+            "Nome": "Invisibilidade Sensorial",
+            "Nível": "5",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você pode se tornar imperceptível para um alvo específico, que não notará sua presença a menos que seja tocado diretamente. O efeito dura 1 minuto.",
+            "Requisitos": "Precisa de um foco para confundir o alvo (barulho, multidão,\"fumaça)."
+        },
+        {
+            "Nome": "Influência Massiva",
+            "Nível": "5",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode convencer um grupo de até 20 pessoas dentro de 9 metros de que suas palavras são a verdade absoluta. Eles devem fazer um Teste de Sabedoria (DC 18) ou seguirão suas instruções por 1 hora.",
+            "Requisitos": "Precisa estar\"em umambiente de autoridade ou cerimonial (igreja, assembleia, tribunal)."
+        },
+        {
+            "Nome": "Marca de Temor",
+            "Nível": "5",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode marcar um local ou pessoa com um símbolo místico visível apenas para certos indivíduos. Quem vê a marca deve fazer um Teste de Sabedoria (DC 18) ou evitará o local por medo.",
+            "Requisitos": "Precisa de um material ritualís\"tico ou um objeto consagrado."
+        },
+        {
+            "Nome": "Domínio Completo",
+            "Nível": "5",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode influenciar até 10 alvos dentro de 9 metros para que sigam suas ordens por 1d6 turnos.",
+            "Requisitos": "Precisa estar em um evento público ou com seguidores fiéis."
+        },
+        {
+            "Nome": "Manifestação Divina",
+            "Nível": "5",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você pode criar um efeito visual avassalador (um raio atingindo um altar, fogo surgindo do nada, sombras se movimentando) que impressiona espectadores e reforça sua autoridade. NPCs supersticiosos fazem um Test\"e de S\"abedoria (DC 18) para resistir.",
+            "Requisitos": "Precisa de um local sagrado ou uma ferramenta cerimonial (medalhão, cajado, insígnia)."
+        },
+        {
+            "Nome": "Toque Incômodo",
+            "Nível": "0",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "Você toca brevemente um inimigo e sussurra algo desconcertante. O alvo deve fazer um Teste de Sabedoria (DC 12) ou sofre desvantagem na próxima jogada de ataque.",
+            "Requisitos": "O alvo precisa ser tocado voluntária ou involuntaria\"mente."
+        },
+        {
+            "Nome": "Palma de Repulsa",
+            "Nível": "0",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você ativa uma pequena reação química na palma da mão que emite uma faísca abrupta. O alvo deve fazer um Teste de Destreza (DC 12) ou é empurrado 1,5 metro para trás.",
+            "Requisitos": "Precisa ter um reagente químico leve na mão."
+        },
+        {
+            "Nome": "Fagulha Ilusória",
+            "Nível": "0",
+            "Tipo": "Ilusões e Truques",
+            "Descrição": "Você projeta uma centelha ilusória que simula o início de um ataque. O alvo deve fazer um Teste de Reflexos (DES, DC 12) ou perde a reação até o próximo turno.",
+            "Requisitos": "Alvo precisa estar olhando em sua direção."
+        },
+        {
+            "Nome": "Escudo Simbólico",
+            "Nível": "0",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Um símbolo breve brilha em sua frente ao ser atacado. Você rola 1d4 e adiciona esse valor ao seu PA contra o próximo ataque.",
+            "Requisitos": "Precisa sussurrar o nome de uma divindade ou entidade protetora."
+        },
+        {
+            "Nome": "Submissão Final",
+            "Nível": "5",
+            "Tipo": "Hipnose e Manipulação",
+            "Descrição": "O alvo a até 6 metros deve fazer um Teste de Sabedoria (DC 18) ou ficará de joelhos, solta sua arma e não poderá agir por 1 turno.",
+            "Requisitos": "O alvo precisa estar visivelmente ferido ou abalado"
+        },
+        {
+            "Nome": "Carga Magnética",
+            "Nível": "3",
+            "Tipo": "Alquimia e Ciência",
+            "Descrição": "Você prende uma pequena cápsula no alvo que atrai metais. No próximo ataque com arma metálica contra ele, o atacante rola com vantagem.",
+            "Requisitos": "O alvo precisa estar usando ou próximo a metal"
+        },
+        {
+            "Nome": "Barreira de Fé",
+            "Nível": "2",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Você ergue um símbolo místico no chão. Aliados dentro de 3 metros ganham +2 no CA por 1 turno.",
+            "Requisitos": "Um símbolo religioso esculpido ou desenhado"
+        },
+        {
+            "Nome": "Ídolo Incandescente",
+            "Nível": "4",
+            "Tipo": "Rituais e Misticismo",
+            "Descrição": "Um totem temporário é invocado e brilha como se abençoado. Criaturas inimigas em 6 metros devem fazer um Teste de Sabedoria (DC 16) ou sofrem -2 nas jogadas de ataque até o fim da cena.",
+            "Requisitos": "Deve estar em área ceri\"monialou com símbolo consagrado"
+        }
+    ]
 
-# Estrutura dos atributos
+        self.truques_por_classe = {
+            "Charlatão": {
+                1: [("Hipnose e Manipulação", None)],
+                5: [("Hipnose e Manipulação", ["Hipnotizador", "Língua de Prata"])],
+                7: [("Ilusões e Truques", ["Dissimulado"])],
+                10: [("Hipnose e Manipulação", ["Hipnotizador", "Língua de Prata"])]
+            },
+            "Sacerdote": {
+                1: [("Rituais e Misticismo", None)],
+                5: [
+                    ("Rituais e Misticismo", ["Orador Visionário"]),
+                    ("Ilusões e Truques", ["Manipulador Místico"])
+                ],
+                7: [("Alquimia e Ciência", ["Manipulador Místico"])],
+                10: [("Rituais e Misticismo", ["Orador Visionário"])]
+            },
+            "Sabotador": {
+                1: [("Alquimia e Ciência", None)],
+                5: [("Ilusões e Truques", ["Espião"])],
+                10: [("Alquimia e Ciência", ["Assassino Urbano"])]
+            },
+            "Erudito": {
+                3: [("Alquimia e Ciência", ["Alquimista"])],
+                7: [("Alquimia e Ciência", ["Engenheiro"])],
+                10: [
+                    ("Alquimia e Ciência", ["Alquimista"]),
+                    ("Alquimia e Ciência", ["Engenheiro"])
+                ]
+            }
+        }
+
     # Função para cálculo do modificador de atributo
     def calcular_nivel(self, personagem):
         classes = personagem.get("classes", [])
@@ -1187,8 +1200,7 @@ class DadosSistema:
             "nome_jogador": "", "nome": "", "idade": 18, "altura": 170, "peso": 70,
             "genero": "", "etnia": "", "etnia_idx": 0, "genero_idx": 0,
             "origem": "", "historia": "", "imagem": None,
-
-            "atributos": {
+            "atributos_finais": {
             "Força": {"base": 8, "bonus_manual": 0, "final": 8},
             "Destreza": {"base": 8, "bonus_manual": 0, "final": 8},
             "Constituição": {"base": 8, "bonus_manual": 0, "final": 8},
@@ -1196,12 +1208,9 @@ class DadosSistema:
             "Sabedoria": {"base": 8, "bonus_manual": 0, "final": 8},
             "Carisma": {"base": 8, "bonus_manual": 0, "final": 8}
             },
-            "atributos_finais": {},
-
             "habilidades": {}, "classes": [], "equipamento": {},
             "inventario": [], "truques": [],
             "misticismo": {"slots": {}, "arsenal": []},
-
             "status_gerais": {
                 "hp": "10", "ca": "10", "velocidade": "6",
                 "iniciativa": "0", "bonus_proficiencia": "1"
@@ -1237,13 +1246,13 @@ class DadosSistema:
 
         # CA (Classe de Armadura)
         if armadura == "Roupas Leves":
-            ca = 10 + mod_des
+            ca = 10 + max(mod_des,0)
         elif armadura == "Couro Reforçado":
-            ca = 12 + mod_des
+            ca = 12 + max(mod_des,0)
         elif armadura == "Cota de Malha":
-            ca = 14 + min(mod_des, 2)
+            ca = 14 + min(max(mod_des,0), 2)
         elif armadura == "Roupas Clericais":
-            ca = 11 + mod_sab
+            ca = 11 + max(mod_sab,0)
         elif armadura == "Brigandina":
             ca = 15
         elif armadura == "Armadura de Placas":
@@ -1255,7 +1264,7 @@ class DadosSistema:
         hp = 6 * nivel_total + mod_con * bonus_prof
 
         # Iniciativa
-        iniciativa = mod_des + (1 if arma_cc == "Sabre" else 0)
+        iniciativa = max(mod_des,0) + (1 if arma_cc == "Sabre" else 0)
 
         personagem["status_gerais"] = {
             "hp": hp,
@@ -1318,3 +1327,18 @@ class DadosSistema:
             if entrada.get("bonus") == "atributo" and entrada.get("atributo_escolhido"):
                 bonus[entrada["atributo_escolhido"]] += 1
         return bonus
+    
+    def tipos_truques_disponiveis(self, personagem):
+        tipos = set()
+        nivel_total = len(personagem.get("classes", []))
+        for entrada in personagem.get("classes", []):
+            classe = entrada["classe"]
+            especializacao = entrada.get("especializacao")
+
+            if classe in self.truques_por_classe:
+                for nivel, truques in self.truques_por_classe[classe].items():
+                    if nivel <= nivel_total:
+                        for tipo, requisito in truques:
+                            if requisito is None or (especializacao and especializacao in requisito):
+                                tipos.add(tipo)
+        return tipos
