@@ -52,7 +52,6 @@ if "extras" not in equipamentos:
 # ===== Exibição =====
 if not st.session_state.equipamentos_confirmados:
     st.markdown(f"## Classe Base: *{classe_base}*")
-    st.markdown("---")
     st.markdown("### Escolhas Iniciais")
 
     col1, col2 = st.columns(2)
@@ -90,27 +89,9 @@ if not st.session_state.equipamentos_confirmados:
             st.success("Equipamentos iniciais confirmados! Eles não poderão mais ser alterados.")
             st.rerun()
 
-# ===== Botão de Reset =====
-if st.session_state.equipamentos_confirmados:
-    if st.button("↺ Resetar Equipamentos"):
-        st.session_state.equipamentos_confirmados = False
-        personagem["equipamentos_confirmados"] = False
-
-        st.session_state.arma_cc = armas_cc[0]
-        st.session_state.arma_dist = armas_dist[0]
-        st.session_state.armadura = armaduras[0]
-
-        equipamentos["arma_cc"] = armas_cc[0]
-        equipamentos["arma_dist"] = armas_dist[0] if armas_dist[0] != "Nenhuma" else None
-        equipamentos["armadura"] = armaduras[0]
-        equipamentos["extras"] = extras_iniciais.copy()
-
-        st.success("Equipamentos reiniciados. Você pode fazer novas escolhas.")
-        st.rerun()
-
 # ===== Salvar escolhas =====
 equipamentos["arma_cc"] = st.session_state.arma_cc
-equipamentos["arma_dist"] = st.session_state.arma_dist if st.session_state.arma_dist != "Nenhuma" else None
+equipamentos["arma_dist"] = st.session_state.arma_dist
 equipamentos["armadura"] = st.session_state.armadura
 
 # ===== Visualização das Estatísticas =====
@@ -118,8 +99,8 @@ def mostrar_equipamento(titulo, atual, tipo, tabela, chave):
     st.markdown(f"### {titulo}")
 
     extras = equipamentos.get("extras", [])
-    opcoes_disponiveis = [item for item in extras if item in tabela]
-    opcoes = [atual] + [item for item in opcoes_disponiveis if item != atual]
+    opcoes_disponiveis = [item for item in extras if item in tabela and item != "Nenhuma"] + ["Nenhuma"]
+    opcoes = [atual] + [item for item in opcoes_disponiveis if item != atual] # Remove "Nenhuma" se já estiver selecionado
 
     selecionado = st.selectbox("Equipado:", options=opcoes, index=0, key=f"troca_{chave}")
 
@@ -150,69 +131,65 @@ def mostrar_equipamento(titulo, atual, tipo, tabela, chave):
             ca, tipo_arm, penalidade, propriedades = stats
             st.markdown(f"**{selecionado}**: CA {ca} | {tipo_arm} | Penalidade: {penalidade} | {propriedades}")
     else:
-        st.markdown(f"**{selecionado}** _(sem dados cadastrados)_")
+        st.markdown(f"_Nenhum item selecionado_")
 
+# ===== Adicionar Equipamento Extra (COLAPSÁVEL) =====
+with st.expander("➕ Adicionar Equipamento Extra"):
+    aba = st.radio("Tipo de Adição", ["📦 Item Personalizado", "🗡️ Arma da Base", "🛡️ Armadura da Base"], horizontal=True)
 
-# ===== Adicionar Equipamento Extra =====
-st.markdown("---")
-st.markdown("### \+ Adicionar Equipamento Extra")
-
-aba = st.radio("Tipo de Adição", ["📦 Item Personalizado", "🗡️ Arma da Base", "🛡️ Armadura da Base"], horizontal=True)
-
-if aba == "📦 Item Personalizado":
-    tipo = st.radio("Tipo do Item", ["Item", "Arma", "Armadura"], horizontal=True)
-    with st.form("form_item_perso"):
-        if tipo == "Arma":
-            nome = st.text_input("Nome do Item")
-            dano = st.text_input("Dano", placeholder="Ex: 1d6")
-            alcance = st.text_input("Alcance", placeholder="Ex: 6m")
-            propriedades = st.text_input("Propriedades", placeholder="Ex: Leve, Arremessável")
-            atributo = st.selectbox("Atributo Usado", ["Força", "Destreza", "Força/Destreza", "—"])
-        elif tipo == "Armadura":
-            nome = st.text_input("Nome do Item")
-            ca = st.text_input("Classe de Armadura (CA)", placeholder="Ex: 14 + Destreza")
-            tipo_armadura = st.text_input("Tipo", placeholder="Leve / Média / Pesada")
-            penalidade = st.text_input("Penalidade", placeholder="Ex: -1m")
-            propriedades = st.text_input("Propriedades", placeholder="Ex: Discreta, Simbólica")
-        elif tipo == "Item":
-            nome = st.text_input("Nome do Item")
-            descricao = st.text_area("Descrição")
-
-        enviado = st.form_submit_button("Adicionar Item")
-        if enviado and nome:
-            # Simula registro na tabela (temporário)
+    if aba == "📦 Item Personalizado":
+        tipo = st.radio("Tipo do Item", ["Item", "Arma", "Armadura"], horizontal=True)
+        with st.form("form_item_perso"):
             if tipo == "Arma":
-                personagem.setdefault("armas_personalizadas", {})[nome] = (dano, alcance, propriedades, atributo)
+                nome = st.text_input("Nome do Item")
+                dano = st.text_input("Dano", placeholder="Ex: 1d6")
+                alcance = st.text_input("Alcance", placeholder="Ex: 6m")
+                propriedades = st.text_input("Propriedades", placeholder="Ex: Leve, Arremessável")
+                atributo = st.selectbox("Atributo Usado", ["Força", "Destreza", "Força/Destreza", "—"])
             elif tipo == "Armadura":
-                personagem.setdefault("armaduras_personalizadas", {})[nome] = (ca, tipo_armadura, penalidade, propriedades)
+                nome = st.text_input("Nome do Item")
+                ca = st.text_input("Classe de Armadura (CA)", placeholder="Ex: 14 + Destreza")
+                tipo_armadura = st.text_input("Tipo", placeholder="Leve / Média / Pesada")
+                penalidade = st.text_input("Penalidade", placeholder="Ex: -1m")
+                propriedades = st.text_input("Propriedades", placeholder="Ex: Discreta, Simbólica")
             elif tipo == "Item":
-                nome_formatado = f"{nome}: {descricao}" if descricao else nome
-                equipamentos["extras"][-1] = nome_formatado  # substitui o nome pelo formatado
+                nome = st.text_input("Nome do Item")
+                descricao = st.text_area("Descrição")
 
-            equipamentos["extras"].append(nome)
-            st.success(f"{tipo} '{nome}' adicionado ao inventário.")
-            st.rerun()
+            enviado = st.form_submit_button("Adicionar Item")
+            if enviado and nome:
+                # Simula registro na tabela (temporário)
+                if tipo == "Arma":
+                    personagem.setdefault("armas_personalizadas", {})[nome] = (dano, alcance, propriedades, atributo)
+                elif tipo == "Armadura":
+                    personagem.setdefault("armaduras_personalizadas", {})[nome] = (ca, tipo_armadura, penalidade, propriedades)
+                elif tipo == "Item":
+                    nome_formatado = f"{nome}: {descricao}" if descricao else nome
+                    equipamentos["extras"][-1] = nome_formatado  # substitui o nome pelo formatado
 
-elif aba == "🗡️ Arma da Base":
-    opcoes = [arma for arma in tabela_armas.keys() if arma not in equipamentos["extras"]]
-    arma_escolhida = st.selectbox("Escolha uma arma:", options=opcoes, index=0 if opcoes else None)
-    if arma_escolhida:
-        if st.button("Adicionar Arma"):
-            equipamentos["extras"].append(arma_escolhida)
-            st.success(f"Arma '{arma_escolhida}' adicionada ao inventário.")
-            st.rerun()
+                equipamentos["extras"].append(nome)
+                st.success(f"{tipo} '{nome}' adicionado ao inventário.")
+                st.rerun()
 
-elif aba == "🛡️ Armadura da Base":
-    opcoes = [armadura for armadura in tabela_armaduras.keys() if armadura not in equipamentos["extras"]]
-    armadura_escolhida = st.selectbox("Escolha uma armadura:", options=opcoes, index=0 if opcoes else None)
-    if armadura_escolhida:
-        if st.button("Adicionar Armadura"):
-            equipamentos["extras"].append(armadura_escolhida)
-            st.success(f"Armadura '{armadura_escolhida}' adicionada ao inventário.")
-            st.rerun()
+    elif aba == "🗡️ Arma da Base":
+        opcoes = [arma for arma in tabela_armas.keys() if arma not in equipamentos["extras"]]
+        arma_escolhida = st.selectbox("Escolha uma arma:", options=opcoes, index=0 if opcoes else "Nenhuma")
+        if arma_escolhida:
+            if st.button("Adicionar Arma"):
+                equipamentos["extras"].append(arma_escolhida)
+                st.success(f"Arma '{arma_escolhida}' adicionada ao inventário.")
+                st.rerun()
+
+    elif aba == "🛡️ Armadura da Base":
+        opcoes = [armadura for armadura in tabela_armaduras.keys() if armadura not in equipamentos["extras"]]
+        armadura_escolhida = st.selectbox("Escolha uma armadura:", options=opcoes, index=0 if opcoes else "Nenhuma")
+        if armadura_escolhida:
+            if st.button("Adicionar Armadura"):
+                equipamentos["extras"].append(armadura_escolhida)
+                st.success(f"Armadura '{armadura_escolhida}' adicionada ao inventário.")
+                st.rerun()
             
 # ===== Exibir Inventário =====
-st.markdown("---")
 st.markdown("### Inventário do Personagem")
 
 mostrar_equipamento("Arma Primária", equipamentos.get("arma_cc"), "arma", tabela_armas, "arma_cc")
@@ -248,8 +225,8 @@ for item in extras:
     with col3:
         if st.button("🗑️", key=f"del_{item}"):
             equipamentos["extras"].remove(item)
-            personagem.get("armas_personalizadas", {}).pop(item, None)
-            personagem.get("armaduras_personalizadas", {}).pop(item, None)
+            personagem.get("armas_personalizadas", {}).pop(item, "Nenhuma")
+            personagem.get("armaduras_personalizadas", {}).pop(item, "Nenhuma")
             st.success(f"{item} removido do inventário.")
             st.rerun()
 
