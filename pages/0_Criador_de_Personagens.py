@@ -30,8 +30,6 @@ Este criador foi feito para te ajudar a desenvolver personagens de forma modular
 
 Use o menu lateral esquerdo (ou superior em mobile) para navegar pelas etapas.
 
-#### ⚠️ PARA CONFIRMAR AS AÇÕES, CLIQUE DUAS VEZES NO BOTÃO! ⚠️
-
 """)
 
 with st.sidebar:

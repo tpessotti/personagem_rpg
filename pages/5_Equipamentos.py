@@ -15,6 +15,14 @@ ds.calcular_status_gerais(st.session_state.personagem)
 personagem = st.session_state.personagem
 equipamentos = personagem.setdefault("equipamentos", {})
 
+tabela_armas = ds.tabela_armas.copy()
+tabela_armaduras = ds.tabela_armaduras.copy()
+
+# Adiciona personalizadas
+tabela_armas.update(personagem.get("armas_personalizadas", {}))
+tabela_armaduras.update(personagem.get("armaduras_personalizadas", {}))
+
+
 # ===== Classe base =====
 classes = personagem.get("classes", [])
 if not classes:
@@ -109,25 +117,30 @@ equipamentos["armadura"] = st.session_state.armadura
 def mostrar_equipamento(titulo, atual, tipo, tabela, chave):
     st.markdown(f"### {titulo}")
 
-    # Itens equipáveis disponíveis no inventário
     extras = equipamentos.get("extras", [])
     opcoes_disponiveis = [item for item in extras if item in tabela]
     opcoes = [atual] + [item for item in opcoes_disponiveis if item != atual]
 
     selecionado = st.selectbox("Equipado:", options=opcoes, index=0, key=f"troca_{chave}")
 
-    # Realiza a troca
+    # Se houver troca de equipamento
     if selecionado != atual:
-        
-        # Se havia um item equipado anteriormente, adiciona aos extras
-        if atual and atual != "Nenhuma" and atual not in extras:
-            equipamentos["extras"].append(atual)
-        
-        # Atualiza o equipamento
-        equipamentos[chave] = selecionado
-        st.success(f"{titulo} trocado para {selecionado}")
+        # Remove novo item dos extras, se estiver lá
+        if selecionado in extras:
+            equipamentos["extras"].remove(selecionado)
 
-    # Exibe estatísticas (mantido igual)
+        # Adiciona o item anterior ao inventário se for diferente
+        if atual and atual != "Nenhuma" and atual != selecionado:
+            equipamentos["extras"].append(atual)
+
+        # Atualiza o equipamento e o session_state
+        equipamentos[chave] = selecionado
+        st.session_state[chave] = selecionado
+
+        st.success(f"{titulo} trocado para {selecionado}")
+        st.rerun()
+
+    # Exibe estatísticas do item selecionado
     stats = tabela.get(selecionado)
     if stats:
         if tipo == "arma":
@@ -138,6 +151,7 @@ def mostrar_equipamento(titulo, atual, tipo, tabela, chave):
             st.markdown(f"**{selecionado}**: CA {ca} | {tipo_arm} | Penalidade: {penalidade} | {propriedades}")
     else:
         st.markdown(f"**{selecionado}** _(sem dados cadastrados)_")
+
 
 # ===== Adicionar Equipamento Extra =====
 st.markdown("---")
@@ -166,23 +180,21 @@ if aba == "📦 Item Personalizado":
 
         enviado = st.form_submit_button("Adicionar Item")
         if enviado and nome:
-            # Salvar no extras
-            equipamentos["extras"].append(nome)
-
             # Simula registro na tabela (temporário)
             if tipo == "Arma":
-                ds.tabela_armas[nome] = (dano, alcance, propriedades, atributo)
+                personagem.setdefault("armas_personalizadas", {})[nome] = (dano, alcance, propriedades, atributo)
             elif tipo == "Armadura":
-                ds.tabela_armaduras[nome] = (ca, tipo_armadura, penalidade, propriedades)
+                personagem.setdefault("armaduras_personalizadas", {})[nome] = (ca, tipo_armadura, penalidade, propriedades)
             elif tipo == "Item":
                 nome_formatado = f"{nome}: {descricao}" if descricao else nome
                 equipamentos["extras"][-1] = nome_formatado  # substitui o nome pelo formatado
 
+            equipamentos["extras"].append(nome)
             st.success(f"{tipo} '{nome}' adicionado ao inventário.")
             st.rerun()
 
 elif aba == "🗡️ Arma da Base":
-    opcoes = [arma for arma in ds.tabela_armas.keys() if arma not in equipamentos["extras"]]
+    opcoes = [arma for arma in tabela_armas.keys() if arma not in equipamentos["extras"]]
     arma_escolhida = st.selectbox("Escolha uma arma:", options=opcoes, index=0 if opcoes else None)
     if arma_escolhida:
         if st.button("Adicionar Arma"):
@@ -191,7 +203,7 @@ elif aba == "🗡️ Arma da Base":
             st.rerun()
 
 elif aba == "🛡️ Armadura da Base":
-    opcoes = [armadura for armadura in ds.tabela_armaduras.keys() if armadura not in equipamentos["extras"]]
+    opcoes = [armadura for armadura in tabela_armaduras.keys() if armadura not in equipamentos["extras"]]
     armadura_escolhida = st.selectbox("Escolha uma armadura:", options=opcoes, index=0 if opcoes else None)
     if armadura_escolhida:
         if st.button("Adicionar Armadura"):
@@ -203,9 +215,9 @@ elif aba == "🛡️ Armadura da Base":
 st.markdown("---")
 st.markdown("### Inventário do Personagem")
 
-mostrar_equipamento("Arma Primária", equipamentos.get("arma_cc"), "arma", ds.tabela_armas, "arma_cc")
-mostrar_equipamento("Arma Secundária", equipamentos.get("arma_dist"), "arma", ds.tabela_armas, "arma_dist")
-mostrar_equipamento("Armadura", equipamentos.get("armadura"), "armadura", ds.tabela_armaduras, "armadura")
+mostrar_equipamento("Arma Primária", equipamentos.get("arma_cc"), "arma", tabela_armas, "arma_cc")
+mostrar_equipamento("Arma Secundária", equipamentos.get("arma_dist"), "arma", tabela_armas, "arma_dist")
+mostrar_equipamento("Armadura", equipamentos.get("armadura"), "armadura", tabela_armaduras, "armadura")
 
 # Itens extras não equipáveis
 st.markdown("### Saco de Carga")
@@ -213,16 +225,29 @@ extras = equipamentos.get("extras", [])
 equipados = [equipamentos.get("arma_cc"), equipamentos.get("arma_dist"), equipamentos.get("armadura")]
 
 for item in extras:
-    if item in ds.tabela_armas:
-        if item not in equipados:
-            dano, distancia, propriedades, atributo = ds.tabela_armas[item]
+    col1, col2 = st.columns([5, 1])
+    with col1:
+        if item in tabela_armas and item not in equipados:
+            dano, distancia, propriedades, atributo = tabela_armas[item]
             st.markdown(f"- {item} 🗡️ → {dano} | Alcance: {distancia} | {propriedades} | Atributo: {atributo}")
-    elif item in ds.tabela_armaduras:
-        if item not in equipados:
-            ca, tipo_arm, penalidade, propriedades = ds.tabela_armaduras[item]
+        elif item in tabela_armaduras and item not in equipados:
+            ca, tipo_arm, penalidade, propriedades = tabela_armaduras[item]
             st.markdown(f"- {item} 🛡️ → CA {ca} | {tipo_arm} | Penalidade: {penalidade} | {propriedades}")
-    else:
-        st.markdown(f"- {item}")
+        elif item not in equipados:
+            st.markdown(f"- {item}")
+    with col2:
+        if st.button("🗑️", key=f"del_{item}"):
+            equipamentos["extras"].remove(item)
+
+            # Remove das personalizadas, se existir
+            if item in personagem.get("armas_personalizadas", {}):
+                del personagem["armas_personalizadas"][item]
+            if item in personagem.get("armaduras_personalizadas", {}):
+                del personagem["armaduras_personalizadas"][item]
+
+            st.success(f"{item} removido do inventário.")
+            st.rerun()
+
 
 # Atualiza os status
 st.session_state.personagem = ds.calcular_status_gerais(st.session_state.personagem)

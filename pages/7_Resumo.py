@@ -25,8 +25,12 @@ bonus_classe = ds.calcular_bonus_classe(personagem, classes)
 nivel_total, classes_texto = ds.calcular_nivel(personagem)
 ds.calcular_status_gerais(personagem)
 ds.calcular_atributos_finais(personagem, bonus_classe)
-tabela_armas = ds.tabela_armas
-tabela_armaduras = ds.tabela_armaduras
+tabela_armas = ds.tabela_armas.copy()
+tabela_armaduras = ds.tabela_armaduras.copy()
+
+# Adiciona personalizadas
+tabela_armas.update(personagem.get("armas_personalizadas", {}))
+tabela_armaduras.update(personagem.get("armaduras_personalizadas", {}))
 
 with st.sidebar:
     st.markdown("## 📁 Exportar")
@@ -68,14 +72,42 @@ def mostrar_valor(valor):
     mod = (valor - 10) // 2
     return f"{valor} ({mod:+})"
 
-def mostrar_equipamento(nome, tabela):
+def mostrar_equipamento(nome, tabela, atributos_finais=None, bonus_proficiencia=0):
     stats = tabela.get(nome)
     if not stats:
         return f"❔ {nome}"
+
+    def calcular_modificador(atributo_nome):
+        try:
+            valor = int(atributos_finais[atributo_nome]["final"])
+            return (valor - 10) // 2
+        except (KeyError, TypeError):
+            return 0
+
     if tabela is tabela_armas:
-        dano, alcance, propriedades, atributo = stats
-        return f"**{nome}** | Dano: {dano} | Alcance: {alcance} | {propriedades} | Atributo: {atributo}"
-    else:
+        dano, alcance, propriedades, atributo_raw = stats
+        atributo_uso = atributo_raw
+        mod = 0
+
+        if atributos_finais:
+            if "/" in atributo_raw:  # Ex: "Força/Destreza"
+                opcoes = [a.strip() for a in atributo_raw.split("/")]
+                mods = {a: calcular_modificador(a) for a in opcoes}
+                atributo_uso = max(mods, key=mods.get)
+                mod = mods[atributo_uso]
+            else:
+                atributo_uso = atributo_raw.strip()
+                mod = calcular_modificador(atributo_uso)
+
+        bonus_ataque = mod + bonus_proficiencia
+        bonus_dano = mod
+
+        return (
+            f"**{nome}** | Ataque: +{bonus_ataque} | Dano: {dano} {f'+{bonus_dano}' if bonus_dano >= 0 else bonus_dano} "
+            f"| Alcance: {alcance} | {propriedades} | Atributo: {atributo_uso} "
+        )
+
+    else:  # tabela_armaduras
         ca, tipo, penalidade, props = stats
         return f"**{nome}** | CA: {ca} | Tipo: {tipo} | Penalidade: {penalidade} | {props}"
 
@@ -160,11 +192,25 @@ armadura = equipamento.get("armadura")
 extras = equipamento.get("extras", [])
 
 if arma_cc:
-    st.markdown(mostrar_equipamento(arma_cc, tabela_armas))
+    st.markdown(mostrar_equipamento(
+    arma_cc, tabela_armas,
+    atributos_finais=atributos_finais,
+    bonus_proficiencia=status.get("bonus_proficiencia", 0)
+))
+
 if arma_dist:
-    st.markdown(mostrar_equipamento(arma_dist, tabela_armas))
+    st.markdown(mostrar_equipamento(
+    arma_dist, tabela_armas,
+    atributos_finais=atributos_finais,
+    bonus_proficiencia=status.get("bonus_proficiencia", 0)
+))
+
 if armadura:
-    st.markdown(mostrar_equipamento(armadura, tabela_armaduras))
+    st.markdown(mostrar_equipamento(
+    armadura, tabela_armaduras,
+    atributos_finais=atributos_finais,
+    bonus_proficiencia=status.get("bonus_proficiencia", 0)
+))
 
 if extras:
     st.markdown("**Itens Extras:**")
