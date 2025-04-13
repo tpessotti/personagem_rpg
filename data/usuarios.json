@@ -162,5 +162,11 @@
     },
     "pergunta_seguranca": "Seu nome é Gabriel?",
     "resposta_seguranca": "b6a0005c7e9085a729bb395b3d30aac3ee4c5155f9dd570a41bc3a82614b31af"
+  },
+  "teste": {
+    "senha": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+    "personagens": {},
+    "pergunta_seguranca": "Qual era o nome do seu primeiro animal de estimação?",
+    "resposta_seguranca": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
   }
 }

@@ -63,6 +63,7 @@ if "usuario" not in st.session_state:
                 if registrar_usuario(usuario, senha, pergunta, resposta):
                     st.session_state.usuario = usuario
                     st.success("Conta criada com sucesso! Bem-vindo, {usuario}!")
+                    st.switch_page("pages/LSBC.py")
                 else:
                     st.error("Este nome de usuário já existe.")
             with st.expander("🔐 Esqueci minha senha"):
