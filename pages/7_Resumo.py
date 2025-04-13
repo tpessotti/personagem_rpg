@@ -1,6 +1,7 @@
 import streamlit as st
 from collections import defaultdict
 from estilo import aplicar_estilo_lsbc
+from auth import salvar_personagem
 from dados_sistema import DadosSistema
 import json
 
@@ -33,7 +34,7 @@ tabela_armas.update(personagem.get("armas_personalizadas", {}))
 tabela_armaduras.update(personagem.get("armaduras_personalizadas", {}))
 
 with st.sidebar:
-    st.markdown("## 📁 Exportar")
+    st.markdown("#### 💾 Salvar")
 
     # Exportar personagem
     personagem_export = {
@@ -45,8 +46,19 @@ with st.sidebar:
         label="Exportar Personagem (.json)",
         data=json_personagem,
         file_name=f"{personagem.get('nome', 'personagem')}_{nivel_total}.json",
-        mime="application/json"
+        mime="application/json",
+        use_container_width=True,
     )
+
+    if "usuario" in st.session_state:
+        nome_pers = personagem.get("nome")
+        if nome_pers:
+            if st.button("Salvar Personagem na Conta", use_container_width=True):
+                salvar_personagem(st.session_state.usuario, nome_pers, personagem)
+                st.success(f"{nome_pers} salvo com sucesso!")
+        else:
+            st.warning("O personagem precisa ter um nome antes de ser salvo.")
+
 
     # Botão de impressão real com HTML
     st.markdown("""
@@ -112,17 +124,18 @@ def mostrar_equipamento(nome, tabela, atributos_finais=None, bonus_proficiencia=
         return f"**{nome}** | CA: {ca} | Tipo: {tipo} | Penalidade: {penalidade} | {props}"
 
 # ===== Cabeçalho =====
-st.title(f"{personagem.get("nome", "🚫 Nome não informado")} | {nivel_total}")
+st.markdown("---")
 
-col_img, col_info = st.columns([1, 2])
+col_img, col_info = st.columns([1, 4])
 
 with col_img:
     if personagem.get("imagem"):
-        st.image(personagem["imagem"], width=200)
+        st.image(personagem["imagem"], use_container_width=True)
     else:
-        st.image("https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png", width=200)
+        st.image("https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png", use_container_width=True)
 
 with col_info:
+    st.title(f"{personagem.get("nome", "🚫 Nome não informado")} | {nivel_total}")
     st.markdown(f"**Classe:** {classes_texto}")
     st.markdown(f"**Jogador:** {personagem.get('nome_jogador', '🚫')}")
     st.markdown(f"**Origem:** {personagem.get('origem', '🚫')} | **Etnia:** {personagem.get('etnia', '🚫')}")

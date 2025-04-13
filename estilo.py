@@ -139,7 +139,57 @@ def aplicar_estilo_lsbc():
         unsafe_allow_html=True
     )
 
-def navbar_resumo():
+def navbar_homepage():
+    col1, col2, col3 = st.columns([1, 7, 2])
+    
+    with col1:
+        st.markdown(
+            "<div style='font-size:1.4rem; font-family:serif;'>🧭 <strong>LSBC</strong></div>",
+            unsafe_allow_html=True,
+        )
+
+    with col3:
+        if "usuario" in st.session_state:
+            st.markdown(f"""
+                <p style="text-align: right;">
+                    👤 <strong>{st.session_state.usuario}</strong>
+                    <a href="/" target="_self" style="
+                    color: #2d2d2d;
+                    font-family: 'Alegreya SC', serif;
+                    text-decoration: none;
+                    font-size: 0.85rem;
+                ">[Logout]</a>
+                </p>
+            """, unsafe_allow_html=True)
+            
+        else:
+            st.markdown("""                        
+                <p style="text-align: right;">
+                    <a href="/login" target="_self" style="
+                        color: #2d2d2d;
+                        font-family: 'Alegreya SC', serif;
+                        text-decoration: none;
+                        font-size: 0.85rem;
+                    ">[Login / Criar Conta]</a>
+                </p>
+            """, unsafe_allow_html=True)
+
+def remover_sidebar():
+    st.markdown(
+        """
+        <style>
+            .stSidebar {
+                display: none;
+            }
+            header[data-testid="stHeader"] {
+            display: none;
+            }
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
+
+def estilo_homepage():
     st.markdown("""
     <link href="https://fonts.googleapis.com/css2?family=Alegreya+SC:wght@700&display=swap" rel="stylesheet">
 

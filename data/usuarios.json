@@ -1,0 +1,166 @@
+{
+  "tpessotti7": {
+    "senha": "b7e94be513e96e8c45cd23d162275e5a12ebde9100a425c4ebcdd7fa4dcd897c",
+    "personagens": {
+      "Ketaan Tohi": {
+        "classes": [
+          {
+            "classe": "Duelista",
+            "nivel": 1,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Erudito",
+            "nivel": 1,
+            "especializacao": null,
+            "bonus": "atributo",
+            "atributo_escolhido": "Destreza"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 2,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 3,
+            "especializacao": "Mosqueteiro",
+            "bonus": "proeza",
+            "proeza_escolhida": "Mestre em Duas Armas"
+          },
+          {
+            "classe": "Erudito",
+            "nivel": 2,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Erudito",
+            "nivel": 3,
+            "especializacao": "Cartógrafo",
+            "bonus": "atributo",
+            "atributo_escolhido": "Inteligência"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 4,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 5,
+            "especializacao": null,
+            "bonus": "proeza"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 6,
+            "especializacao": null,
+            "bonus": "atributo"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 7,
+            "especializacao": null,
+            "bonus": null
+          }
+        ],
+        "nome_jogador": "Tiago Pessotti",
+        "nome": "Ketaan Tohi",
+        "idade": 30,
+        "altura": 180,
+        "genero": "Masculino",
+        "genero_idx": 0,
+        "peso": 80,
+        "etnia": "Latino-Americanos",
+        "etnia_idx": 8,
+        "origem": "Brasil",
+        "historia": "",
+        "atributos_finais": {
+          "Força": {
+            "base": 8,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 8
+          },
+          "Destreza": {
+            "base": 15,
+            "bonus_classe": 1,
+            "bonus_manual": 2,
+            "final": 18
+          },
+          "Constituição": {
+            "base": 14,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 14
+          },
+          "Inteligência": {
+            "base": 15,
+            "bonus_classe": 1,
+            "bonus_manual": 0,
+            "final": 16
+          },
+          "Sabedoria": {
+            "base": 13,
+            "bonus_classe": 0,
+            "bonus_manual": 1,
+            "final": 14
+          },
+          "Carisma": {
+            "base": 10,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 10
+          }
+        },
+        "habilidades": {
+          "Atletismo": 0,
+          "Briga": 0,
+          "Furtividade": 0,
+          "Pontaria": 0,
+          "Reflexos": 0,
+          "Resistência": 0,
+          "Conhecimento Acadêmico": 1,
+          "Engenharia e Mecânica": 0,
+          "Estratégia": 1,
+          "Percepção": 2,
+          "Sobrevivência": 0,
+          "Psicologia": 0,
+          "Persuasão": 0,
+          "Enganação": 0,
+          "Intimidação": 0,
+          "Navegação": 0,
+          "Medicina": 0,
+          "Ocultismo": 0,
+          "Explosivos": 0
+        },
+        "status_gerais": {
+          "hp": 68,
+          "ca": 16,
+          "velocidade": 6,
+          "iniciativa": 5,
+          "bonus_proficiencia": 4
+        },
+        "equipamentos": {
+          "extras": [
+            "Kit de Manutenção de Armas",
+            "Bússula Antiga: Um antigo artefato adiqueirido numa loja de antiguidades na cidade de Nassau.",
+            "Machado de Mão"
+          ],
+          "arma_cc": "Sabre",
+          "arma_dist": "Pistola",
+          "armadura": "Couro Reforçado"
+        },
+        "equipamentos_confirmados": true,
+        "imagem": null,
+        "ultima_edicao": "2025-04-12T20:55:34.950605"
+      }
+    },
+    "pergunta_seguranca": "Seu nome é Gabriel?",
+    "resposta_seguranca": "b6a0005c7e9085a729bb395b3d30aac3ee4c5155f9dd570a41bc3a82614b31af"
+  }
+}

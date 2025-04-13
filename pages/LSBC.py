@@ -1,10 +1,11 @@
 import streamlit as st
-from estilo import aplicar_estilo_lsbc, navbar_resumo
+from estilo import aplicar_estilo_lsbc, estilo_homepage, navbar_homepage
 
 # Configuração inicial
 st.set_page_config(page_title="LSBC | Segredos Perdidos da Costa Brasileira", layout="wide", initial_sidebar_state="collapsed")
 aplicar_estilo_lsbc()
-navbar_resumo()
+navbar_homepage()
+estilo_homepage()
 
 # Prólogo
 st.markdown("""
@@ -28,19 +29,11 @@ Capitanias semiautônomas incentivam corsários e piratas, o comércio clandesti
 <p>
 Este é o mundo de <strong>Lost Secrets of the Brazilian Coast</strong>. E sua história está prestes a começar...
 </p>
-
-<p style="text-align: center; margin-top: 10rem;">
-    <a href="/Criador_de_Personagens" target="_self" style="
-        background-color: #fcbf49;
-        color: #2d2d2d;
-        font-family: 'Alegreya SC', serif;
-        padding: 0.6rem 1.4rem;
-        border-radius: 8px;
-        font-weight: bold;
-        text-decoration: none;
-        font-size: 1.2rem;
-        box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
-    ">Começar Criação de Personagem</a>
-</p>
 </div>
 """, unsafe_allow_html=True)
+
+col1, col2, col3 = st.columns([4, 2, 4])
+with col2:
+    criar = st.button("Começar Criação de Personagem", key="criar_personagem")
+    if criar:
+        st.switch_page("pages/0_Criador_de_Personagens.py")
