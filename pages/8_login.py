@@ -9,6 +9,55 @@ st.set_page_config(page_title="Login | LSBC", layout="centered")
 aplicar_estilo_lsbc()
 remover_sidebar()
 
+def esqueci_a_senha():
+    if "mostrar_expander_senha" not in st.session_state:
+        st.session_state.mostrar_expander_senha = False
+    with st.expander("🔐 Esqueci minha senha", expanded=st.session_state.mostrar_expander_senha):
+        from auth import carregar_usuarios, validar_resposta_seguranca, redefinir_senha
+
+        usuarios = carregar_usuarios()
+
+        # Campo de entrada de usuário
+        usuario_esqueci = st.text_input("Usuário", key="usuario_esqueci")
+
+        # Controle de verificação
+        if "usuario_verificado" not in st.session_state:
+            st.session_state.usuario_verificado = None  # None = não verificado ainda
+
+        # Botão para verificar se o usuário existe
+        if st.button("Verificar Usuário"):
+            st.session_state.mostrar_expander_senha = True
+            if usuario_esqueci in usuarios:
+                st.session_state.usuario_verificado = True
+            else:
+                st.session_state.usuario_verificado = False
+
+        # Resultado da verificação
+        if st.session_state.usuario_verificado is False:
+            st.warning("Usuário não encontrado.")
+            if st.button("Criar Conta"):
+                st.switch_page("pages/login.py")  # ou o caminho correto da página de login
+            return
+
+        # Se o usuário foi verificado com sucesso
+        if st.session_state.usuario_verificado and usuario_esqueci in usuarios:
+            pergunta = usuarios[usuario_esqueci].get("pergunta_seguranca", "Pergunta não cadastrada.")
+            st.markdown(f"**Pergunta de Segurança:** {pergunta}")
+
+            resposta_usuario = st.text_input("Resposta", type="password", key="resposta_seguranca")
+            nova_senha = st.text_input("Nova Senha", type="password", key="nova_senha")
+            confirmar_nova_senha = st.text_input("Confirmar Nova Senha", type="password", key="confirmar_nova_senha")
+
+            if st.button("Redefinir Senha"):
+                if nova_senha != confirmar_nova_senha:
+                    st.error("As senhas não coincidem.")
+                elif not validar_resposta_seguranca(usuario_esqueci, resposta_usuario):
+                    st.error("Resposta incorreta.")
+                else:
+                    redefinir_senha(usuario_esqueci, nova_senha)
+                    st.success("Senha redefinida com sucesso! Faça login com a nova senha.")
+                    st.session_state.usuario_verificado = None  # Reseta
+
 if "usuario" not in st.session_state:
     st.markdown("## 🔐 Acesso ao Sistema LSBC")
 
@@ -54,6 +103,7 @@ if "usuario" not in st.session_state:
                 st.switch_page("pages/LSBC.py")
             else:
                 st.error("Usuário ou senha incorretos.")
+                esqueci_a_senha()
         else:
             if senha != senha_confirm:
                 st.error("As senhas não coincidem.")
@@ -66,30 +116,7 @@ if "usuario" not in st.session_state:
                     st.switch_page("pages/LSBC.py")
                 else:
                     st.error("Este nome de usuário já existe.")
-            with st.expander("🔐 Esqueci minha senha"):
-                usuario_esqueci = st.text_input("Usuário", key="usuario_esqueci")
-
-                from auth import carregar_usuarios, validar_resposta_seguranca, redefinir_senha
-
-                usuarios = carregar_usuarios()
-                if usuario_esqueci in usuarios:
-                    pergunta = usuarios[usuario_esqueci].get("pergunta_seguranca")
-                    st.markdown(f"**Pergunta de Segurança:** {pergunta}")
-                    resposta_usuario = st.text_input("Resposta", type="password", key="resposta_seguranca")
-
-                    nova_senha = st.text_input("Nova Senha", type="password", key="nova_senha")
-                    confirmar_nova_senha = st.text_input("Confirmar Nova Senha", type="password", key="confirmar_nova_senha")
-
-                if st.button("Redefinir Senha"):
-                    if nova_senha != confirmar_nova_senha:
-                        st.error("As senhas não coincidem.")
-                    elif not validar_resposta_seguranca(usuario_esqueci, resposta_usuario):
-                        st.error("Resposta incorreta.")
-                    else:
-                        redefinir_senha(usuario_esqueci, nova_senha)
-                        st.success("Senha redefinida com sucesso! Faça login com a nova senha.")
-                elif usuario_esqueci:
-                    st.warning("Usuário não encontrado.")
+            
 
 ## ===============Exibir informações do usuário logado===============
 
