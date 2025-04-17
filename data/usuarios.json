@@ -1,5 +1,5 @@
 {
-  "tpessotti7": {
+  "tpessotti": {
     "senha": "b7e94be513e96e8c45cd23d162275e5a12ebde9100a425c4ebcdd7fa4dcd897c",
     "personagens": {
       "Ketaan Tohi": {
@@ -42,30 +42,6 @@
             "especializacao": "Cartógrafo",
             "bonus": "atributo",
             "atributo_escolhido": "Inteligência"
-          },
-          {
-            "classe": "Duelista",
-            "nivel": 4,
-            "especializacao": null,
-            "bonus": null
-          },
-          {
-            "classe": "Duelista",
-            "nivel": 5,
-            "especializacao": null,
-            "bonus": "proeza"
-          },
-          {
-            "classe": "Duelista",
-            "nivel": 6,
-            "especializacao": null,
-            "bonus": "atributo"
-          },
-          {
-            "classe": "Duelista",
-            "nivel": 7,
-            "especializacao": null,
-            "bonus": null
           }
         ],
         "nome_jogador": "Tiago Pessotti",
@@ -139,11 +115,11 @@
           "Explosivos": 0
         },
         "status_gerais": {
-          "hp": 68,
+          "hp": 42,
           "ca": 16,
           "velocidade": 6,
           "iniciativa": 5,
-          "bonus_proficiencia": 4
+          "bonus_proficiencia": 3
         },
         "equipamentos": {
           "extras": [
@@ -157,16 +133,177 @@
         },
         "equipamentos_confirmados": true,
         "imagem": null,
-        "ultima_edicao": "2025-04-12T20:55:34.950605"
+        "ultima_edicao": "2025-04-13T09:09:58.464584"
       }
     },
-    "pergunta_seguranca": "Seu nome é Gabriel?",
-    "resposta_seguranca": "b6a0005c7e9085a729bb395b3d30aac3ee4c5155f9dd570a41bc3a82614b31af"
+    "pergunta_seguranca": "Qual era o nome do seu primeiro animal de estimação?",
+    "resposta_seguranca": "3e23e8160039594a33894f6564e1b1348bbd7a0088d42c4acb73eeaed59c009d",
+    "ultima_entrada": "2025-04-13T09:09:01.106956"
   },
-  "teste": {
-    "senha": "a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3",
+  "noctis inferno": {
+    "senha": "0722fb0664946f4fb8a8f4b4076bb3e1e1a2a22d3af67c9ffd7ee86761b494ff",
+    "personagens": {
+      "Salazar Ferreira": {
+        "nome_jogador": "João Pedro",
+        "nome": "Salazar Ferreira",
+        "idade": 22,
+        "altura": 180,
+        "peso": 80,
+        "genero": "Masculino",
+        "etnia": "Latinos Europeus",
+        "etnia_idx": 5,
+        "genero_idx": 0,
+        "origem": "Portugal",
+        "historia": "",
+        "imagem": null,
+        "atributos_finais": {
+          "Força": {
+            "base": 15,
+            "bonus_classe": 0,
+            "bonus_manual": 1,
+            "final": 16
+          },
+          "Destreza": {
+            "base": 14,
+            "bonus_classe": 2,
+            "bonus_manual": 2,
+            "final": 18
+          },
+          "Constituição": {
+            "base": 14,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 14
+          },
+          "Inteligência": {
+            "base": 10,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 10
+          },
+          "Sabedoria": {
+            "base": 12,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 12
+          },
+          "Carisma": {
+            "base": 10,
+            "bonus_classe": 0,
+            "bonus_manual": 0,
+            "final": 10
+          }
+        },
+        "habilidades": {
+          "Atletismo": 0,
+          "Briga": 0,
+          "Furtividade": 1,
+          "Pontaria": 1,
+          "Reflexos": 1,
+          "Resistência": 0,
+          "Conhecimento Acadêmico": 0,
+          "Engenharia e Mecânica": 0,
+          "Estratégia": 0,
+          "Percepção": 1,
+          "Sobrevivência": 0,
+          "Psicologia": 0,
+          "Persuasão": 0,
+          "Enganação": 0,
+          "Intimidação": 0,
+          "Navegação": 0,
+          "Medicina": 0,
+          "Ocultismo": 0,
+          "Explosivos": 0
+        },
+        "classes": [
+          {
+            "classe": "Duelista",
+            "nivel": 1,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 2,
+            "especializacao": null,
+            "bonus": "atributo",
+            "atributo_escolhido": "Destreza"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 3,
+            "especializacao": "Mosqueteiro",
+            "bonus": null
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 4,
+            "especializacao": null,
+            "bonus": "proeza",
+            "proeza_escolhida": "Ataque Extra"
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 5,
+            "especializacao": null,
+            "bonus": null
+          },
+          {
+            "classe": "Duelista",
+            "nivel": 6,
+            "especializacao": null,
+            "bonus": "atributo",
+            "atributo_escolhido": "Destreza"
+          }
+        ],
+        "equipamento": {},
+        "inventario": [],
+        "truques": [],
+        "misticismo": {
+          "slots": {},
+          "arsenal": []
+        },
+        "status_gerais": {
+          "hp": 42,
+          "ca": 16,
+          "velocidade": 6,
+          "iniciativa": 5,
+          "bonus_proficiencia": 3
+        },
+        "tema_visual": {
+          "brasao": null,
+          "estilo": "pergaminho"
+        },
+        "versao": "1.0",
+        "data_criacao": null,
+        "equipamentos": {
+          "extras": [
+            "Kit de Manutenção de Armas"
+          ],
+          "arma_cc": "Sabre",
+          "arma_dist": "Pistola",
+          "armadura": "Couro Reforçado"
+        },
+        "equipamentos_confirmados": true,
+        "ultima_edicao": "2025-04-13T19:05:54.467152"
+      }
+    },
+    "pergunta_seguranca": "Qual era o nome do seu primeiro animal de estimação?",
+    "resposta_seguranca": "feb256dd9e479433684584d79f738cc49e7c035c8d986b78827c2047e5c6f394",
+    "ultima_entrada": "2025-04-13T16:05:12.604564"
+  },
+  "Little_Witch": {
+    "senha": "c928f3938ce44a77102ccdcd887f11fd9248d56ba82137e164f3ab132fc118b0",
     "personagens": {},
     "pergunta_seguranca": "Qual era o nome do seu primeiro animal de estimação?",
-    "resposta_seguranca": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+    "resposta_seguranca": "1951b42da32ec66c0c896c2aa4286455608cc42f55842c206af7518205a4eb80",
+    "ultima_entrada": "2025-04-13T18:06:38.255358"
+  },
+  "JavierC": {
+    "senha": "5567956c034af72d8e7eb58eb417ed3ad9de551a130109dcfab737c163452a56",
+    "personagens": {},
+    "pergunta_seguranca": "Seu nome é Gabriel?",
+    "resposta_seguranca": "9313455e45aa22430a92fddbb70f21312d3c944ab590dfb1da845c1a96b664fe",
+    "ultima_entrada": "2025-04-13T19:41:49.549889"
   }
 }

@@ -3,7 +3,7 @@ import hashlib
 from datetime import datetime
 import streamlit as st
 
-# --- CONFIGURAÇÃO JSONBIN ---
+# --- CONFIGURAÇÃO ---
 API_KEY = st.secrets["JSONBIN_API_KEY"]
 BIN_ID = st.secrets["JSONBIN_BIN_ID"]
 
@@ -15,7 +15,12 @@ HEADERS = {
 URL_BIN = f"https://api.jsonbin.io/v3/b/{BIN_ID}"
 URL_LATEST = f"{URL_BIN}/latest"
 
+ADMINS = ["tpessotti"]
+
 # --- UTILITÁRIOS JSONBIN ---
+
+def usuario_e_admin():
+    return "usuario" in st.session_state and st.session_state.usuario in ADMINS
 
 def carregar_todos_usuarios():
     """Carrega todos os dados do bin"""

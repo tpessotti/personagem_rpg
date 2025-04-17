@@ -7,7 +7,7 @@ import streamlit as st
 # Configuração inicial
 st.set_page_config(page_title="Login | LSBC", layout="centered")
 aplicar_estilo_lsbc()
-remover_sidebar()
+#remover_sidebar()
 
 def esqueci_a_senha():
     if "mostrar_expander_senha" not in st.session_state:

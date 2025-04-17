@@ -1277,10 +1277,10 @@ class DadosSistema:
         return personagem
 
     # Salva os atributos finais detalhadamente
-    def calcular_atributos_finais(self, personagem, bonus_classe, bonus_manual_externo=None):
+    def calcular_atributos_finais(self, personagem, bonus_classe=None, bonus_manual_externo=None):
         personagem["atributos_finais"] = personagem.get("atributos_finais", {})
 
-        # Inicializa se necessário
+        # Inicializa atributos se não existirem
         for attr in self.atributos_base:
             if attr not in personagem["atributos_finais"]:
                 personagem["atributos_finais"][attr] = {
@@ -1290,25 +1290,25 @@ class DadosSistema:
                     "final": 8
                 }
 
-        # Determina os atributos que receberam +1 e +2 a partir das classes
+        # Determina os bônus manuais
         manual_bonus = {attr: 0 for attr in self.atributos_base}
         if bonus_manual_externo:  # opcional, usado na aba de edição
             attr1 = bonus_manual_externo.get("+1")
             attr2 = bonus_manual_externo.get("+2")
-            if attr1:
+            if attr1 in self.atributos_base:
                 manual_bonus[attr1] += 1
-            if attr2:
+            if attr2 in self.atributos_base:
                 manual_bonus[attr2] += 2
         else:
-            # Caso esteja só lendo o JSON já preenchido, usa os próprios valores armazenados
+            # Usa os bônus já salvos
             for attr in self.atributos_base:
                 manual_bonus[attr] = personagem["atributos_finais"].get(attr, {}).get("bonus_manual", 0)
 
-        # Recalcula todos os valores finais
+        # Recalcula os valores finais com base, classe e manual
         for attr in self.atributos_base:
             base = personagem["atributos_finais"][attr].get("base", 8)
             bonus_m = manual_bonus.get(attr, 0)
-            bonus_cl = bonus_classe.get(attr, 0)
+            bonus_cl = bonus_classe.get(attr, 0) if bonus_classe else 0
             final = base + bonus_m + bonus_cl
 
             personagem["atributos_finais"][attr] = {

@@ -5,14 +5,11 @@ from dados_sistema import DadosSistema
 # Configuração de página e estilo
 aplicar_estilo_lsbc()
 st.markdown("# 🧭 Atributos")
-dados = DadosSistema()
+ds = DadosSistema()
 
 # Inicialização
 if "personagem" not in st.session_state:
-    st.session_state.personagem = dados.inicializar_personagem()
-
-if "bonus_manual" not in st.session_state:
-    st.session_state.bonus_manual = {"+1": None, "+2": None}
+    st.session_state.personagem = ds.inicializar_personagem()
 
 personagem = st.session_state.personagem
 classes = st.session_state.personagem.get("classes", [])
@@ -21,15 +18,15 @@ classes = st.session_state.personagem.get("classes", [])
 if "atributos_finais" not in personagem:
     personagem["atributos_finais"] = {
         attr: {"base": 8, "bonus_classe": 0, "bonus_manual": 0, "final": 8}
-        for attr in dados.atributos_base
+        for attr in ds.atributos_base
     }
 
 # Constantes
 TOTAL_PONTOS = 75
 VALOR_MINIMO = 8
-VALOR_MAXIMO = 15
-atributos_base = dados.atributos_base
-bonus_classe = dados.calcular_bonus_classe(personagem, classes)
+VALOR_MAXIMO = 16
+atributos_base = ds.atributos_base
+bonus_classe = ds.calcular_bonus_classe(personagem, classes)
 pontos_usados = sum(personagem["atributos_finais"][attr]["base"] for attr in atributos_base)
 pontos_restantes = TOTAL_PONTOS - pontos_usados
 
@@ -39,10 +36,7 @@ st.markdown(f"**Pontos usados:** {pontos_usados} / {TOTAL_PONTOS} &nbsp;&nbsp;&n
 for attr in atributos_base:
     base = personagem["atributos_finais"][attr]["base"]
 
-    bonus_manual = (
-        (1 if st.session_state.bonus_manual["+1"] == attr else 0)
-        + (2 if st.session_state.bonus_manual["+2"] == attr else 0)
-    )
+    bonus_manual = personagem["atributos_finais"][attr]["bonus_manual"]
     bonus_total = bonus_manual + bonus_classe.get(attr, 0)
     valor_final = base + bonus_total
 
@@ -67,27 +61,47 @@ for attr in atributos_base:
             st.rerun()
 
     with col5:
-        col_b1, col_b2 = st.columns(2)
-        with col_b1:
-            ativar = st.session_state.bonus_manual["+1"] == attr
-            novo_valor = st.checkbox("+1", value=ativar, key=f"b1_{attr}")
-            if novo_valor != ativar:
-                st.session_state.bonus_manual["+1"] = attr if novo_valor else None
-                st.rerun()
+        bonus_manual = personagem["atributos_finais"][attr].get("bonus_manual", 0)
 
+        # Identificar quem já tem +1 e +2
+        outro_com_mais1 = None
+        outro_com_mais2 = None
+        for nome_attr, dados in personagem["atributos_finais"].items():
+            if nome_attr != attr:
+                bm = dados.get("bonus_manual", 0)
+                if bm == 1:
+                    outro_com_mais1 = nome_attr
+                elif bm == 2:
+                    outro_com_mais2 = nome_attr
+
+        col_b1, col_b2 = st.columns(2)
+
+        with col_b1:
+            novo_b1 = st.checkbox("+1", value=(bonus_manual == 1), key=f"b1_{attr}")
         with col_b2:
-            ativar2 = st.session_state.bonus_manual["+2"] == attr
-            novo_valor2 = st.checkbox("+2", value=ativar2, key=f"b2_{attr}")
-            if novo_valor2 != ativar2:
-                st.session_state.bonus_manual["+2"] = attr if novo_valor2 else None
-                st.rerun()
+            novo_b2 = st.checkbox("+2", value=(bonus_manual == 2), key=f"b2_{attr}")
+
+        # Determina novo bônus com base nos checkboxes
+        novo_bonus = 0
+        if novo_b2:
+            novo_bonus = 2
+        elif novo_b1:
+            novo_bonus = 1
+
+        if bonus_manual != novo_bonus:
+            # Remove +1 de outro atributo, se necessário
+            if novo_bonus == 1 and outro_com_mais1:
+                personagem["atributos_finais"][outro_com_mais1]["bonus_manual"] = 0
+
+            # Remove +2 de outro atributo, se necessário
+            if novo_bonus == 2 and outro_com_mais2:
+                personagem["atributos_finais"][outro_com_mais2]["bonus_manual"] = 0
+
+            personagem["atributos_finais"][attr]["bonus_manual"] = novo_bonus
+            st.rerun()
+
 
 # Atualiza os atributos finais com base nos bônus atuais
-st.session_state.personagem = dados.calcular_atributos_finais(
-    st.session_state.personagem,
-    bonus_classe,
-    st.session_state.bonus_manual
-)
-
+st.session_state.personagem = ds.calcular_atributos_finais(st.session_state.personagem)
 st.divider()
 st.markdown("**Nota:** O valor final inclui bônus de classe e bônus manuais. Cada bônus só pode ser atribuído uma vez e a atributos distintos.")
