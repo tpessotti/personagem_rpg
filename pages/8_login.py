@@ -200,11 +200,11 @@ if "usuario" in st.session_state:
                 if etnia != etnia_mais[0]:
                     st.markdown(f"- {etnia}: {qtd} personagem(ns)")
 
-        from streamlit_autorefresh import st_autorefresh
+        #from streamlit_autorefresh import st_autorefresh
         import random
 
         # Controla o índice do comentário e tempo de atualização
-        st_autorefresh(interval=10000, key="comentario_refresh", limit=None)
+        #st_autorefresh(interval=10000, key="comentario_refresh", limit=None)
 
         if "comentario_index" not in st.session_state:
             st.session_state.comentario_index = 0
