@@ -235,6 +235,6 @@ st.markdown("---")
 st.subheader("✨ Truques (Misticismo)")
 if truques:
     for truque in truques:
-        st.markdown(f"- Nível {truque['nivel']} | {truque['tipo']} | **{truque['nome']}**")
+        st.markdown(f"- Nível {truque['Nível']} | {truque['Tipo']} | **{truque['Nome']}**")
 else:
     st.info("Nenhum truque selecionado.")
