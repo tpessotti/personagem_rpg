@@ -56,4 +56,26 @@ personagem["historia"] = st.text_area("História resumida", value=personagem.get
 
 # ====== Imagem ======
 st.markdown("### Imagem do Personagem")
-personagem["imagem"] = st.file_uploader("Envie uma imagem (opcional)", type=["png", "jpg", "jpeg"])
+# Inicializa a variável se necessário
+if "abrir_modal_imagem" not in st.session_state:
+    st.session_state.abrir_modal_imagem = False
+
+# Botão para abrir o "modal"
+if st.button("🖼️ Alterar imagem do personagem"):
+    st.session_state.abrir_modal_imagem = True
+
+# Simula o modal para alterar imagem
+if st.session_state.abrir_modal_imagem:
+    st.markdown("#### 🔗 Inserir link da imagem do personagem")
+    nova_url = st.text_input("Cole o link da imagem abaixo", value=personagem.get("imagem", ""))
+
+    col1, col2 = st.columns(2)
+    with col1:
+        if st.button("✅ Confirmar"):
+            personagem["imagem"] = nova_url if nova_url.strip() else None
+            st.session_state.abrir_modal_imagem = False
+            st.success("Imagem atualizada com sucesso!")
+
+    with col2:
+        if st.button("❌ Cancelar"):
+            st.session_state.abrir_modal_imagem = False

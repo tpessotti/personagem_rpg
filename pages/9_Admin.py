@@ -79,8 +79,6 @@ if personagens:
                 mime="application/json"
             )
 
-
-
 # 📥 Importar personagem por JSON
 st.markdown("### 📥 Importar novo personagem (.json)")
 col_nome, col_json = st.columns([2, 2])
@@ -116,3 +114,101 @@ if st.button("✅ Confirmar importação", use_container_width=True):
 elif arquivo and not nome_importado_manual:
     st.warning("Por favor, defina um nome para o personagem antes de confirmar a importação.")
 
+st.markdown("### 🧙 Visualizar personagens em cards")
+
+# Junta todos os personagens de todos os usuários
+todos_personagens = {}
+for usuario, dados in usuarios.items():
+    for nome, ficha in dados.get("personagens", {}).items():
+        chave = f"{usuario} | {nome}"
+        todos_personagens[chave] = ficha
+
+# Seleção múltipla
+nomes_disponiveis = sorted(todos_personagens.keys())
+selecionados = st.multiselect("Selecione personagens para visualizar:", nomes_disponiveis)
+
+# Layout em colunas
+if selecionados:
+    for i in range(0, len(selecionados), 4):
+        cols = st.columns(4)
+        for j, nome in enumerate(selecionados[i:i+4]):
+            with cols[j]:
+                p = todos_personagens[nome]
+                ficha = p.get("atributos_finais", {})
+                status = p.get("status_gerais", {})
+                ca = status.get("ca", "❓")
+                hp = status.get("hp", "❓")
+                img = p.get("imagem", "https://imebehavioralhealth.com/wp-content/uploads/2021/10/user-icon-placeholder-1.png")  # imagem padrão
+
+                # Classes e nível
+                nivel_total = sum(1 for _ in p.get("classes", []))
+                classes = {}
+                for c in p.get("classes", []):
+                    classe = c.get("classe", "???")
+                    classes[classe] = classes.get(classe, 0) + 1
+                classe_txt = " / ".join([f"{k} {v}" for k, v in classes.items()])
+                
+                # Exibe os atributos principais
+                atributos_exibir = ["Força", "Destreza", "Constituição", "Inteligência", "Sabedoria", "Carisma"]
+                # Cabeçalhos
+                cabecalhos = "".join([
+                    f"<th style='padding: 0.1rem 0.1rem; font-size: 0.75rem; text-align: center;'>{a[:3]}</th>"
+                    for a in atributos_exibir
+                ])
+
+                # Valores com bônus
+                valores = "".join([
+                    f"<td style='padding: 0.1rem 0.1rem; font-size: 0.90rem; text-align: center;'>"
+                    f"{ficha.get(a, {}).get('final', 0):02d} "
+                    f"({(ficha.get(a, {}).get('final', 10) - 10) // 2:+d})</td>"
+                    for a in atributos_exibir
+                ])
+
+                # Tabela completa
+                bonus_txt = f"""
+                <table style='margin: auto;'>
+                    <tr>{cabecalhos}</tr>
+                    <tr>{valores}</tr>
+                </table>
+                """
+
+                # Card
+                st.markdown(f"""
+                    <div style='
+                        position: relative;
+                        border: 1px solid #ccc;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        background: #fefefe;
+                        width: 100%;
+                        height: 100%;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+                        font-family: Georgia, serif;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: start;
+                    '>
+                        <div style='position: absolute; top: 5px; left: 10px; font-weight: bold; background-color: rgba(255, 255, 255, 0.8); border-radius: 6px; padding: 2px 8px;'>🛡️{ca}</div>
+                        <div style='position: absolute; top: 5px; right: 10px; font-weight: bold; background-color: rgba(255, 255, 255, 0.8); border-radius: 6px; padding: 2px 8px;'>❤️{hp}</div>
+                        <div style='
+                            width: 100%;
+                            aspect-ratio: 1 / 1;
+                            overflow: hidden;
+                            border-bottom: 1px solid #ccc;
+                        '>
+                            <img src="{img}" style='
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                                object-position: center top;
+                                display: block;
+                            ' />
+                        </div>
+                        <div style='padding: 0.0rem;text-align: center;'>
+                            <h4 style='margin: 0;'>| {nivel_total} | {p.get("nome", nome)}</h4>
+                            <p style='margin: 0.2rem 0;'>🏴‍☠️ {classe_txt}</p>
+                            <h2 style='margin-top: 0.4rem;'>{bonus_txt}</h2>
+                """, unsafe_allow_html=True)
+                
+                st.markdown(f"", unsafe_allow_html=True)
+                st.markdown("</div></div>", unsafe_allow_html=True)
